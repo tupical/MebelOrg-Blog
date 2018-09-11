@@ -4,10 +4,12 @@ namespace App\Models;
 
 use App\Concern\Likeable;
 use App\Scopes\PostedScope;
+use App\Models\Favorite;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -21,10 +23,17 @@ class Post extends Model
     protected $fillable = [
         'author_id',
         'title',
+        'category_id',
         'content',
+        'short_content',
+        'keywords',
+        'meta_title',
+        'meta_description',
+        'rating',
         'posted_at',
         'slug',
         'thumbnail_id',
+        'published'
     ];
 
     /**
@@ -85,6 +94,26 @@ class Post extends Model
                      ->limit($limit);
     }
 
+    
+    /**
+     * 
+     */
+    public function viewsByAuthor()
+    {
+        return $this->groupBy('author_id')
+                    ->selectRaw('sum(view_count) as sum, author_id')
+                    ->pluck('sum','author_id')
+                    ->toArray();
+    }
+
+    public function postByAuthor()
+    {
+        return $this->groupBy('author_id')
+                    ->selectRaw('count(id) as count, author_id')
+                    ->pluck('count','author_id')
+                    ->toArray();
+    }
+
     /**
      * Scope a query to only include posts posted last week.
      */
@@ -133,4 +162,24 @@ class Post extends Model
     {
         return filled($this->thumbnail_id);
     }
+
+    public function tag()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function favorited() {
+        return (bool) Favorite::where('user_id', Auth::id()) ->where('post_id', $this->id) ->first();
+    }
+
+    public function rating()
+    {
+        return $this->belongsToMany(Rating::class); 
+    }
 }
+ 

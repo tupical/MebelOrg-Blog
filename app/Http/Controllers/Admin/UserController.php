@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UsersRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -16,8 +17,11 @@ class UserController extends Controller
      */
     public function index(): View
     {
+        $post = new Post;
         return view('admin.users.index', [
-            'users' => User::latest()->paginate(50)
+            'users' => User::orderBy('id')->latest()->paginate(50),
+            'posts' => $post->viewsByAuthor(),
+            'total' => $post->postByAuthor(),
         ]);
     }
 
@@ -28,7 +32,8 @@ class UserController extends Controller
     {
         return view('admin.users.edit', [
             'user' => $user,
-            'roles' => Role::all()
+            'roles' => Role::all(),
+        
         ]);
     }
 

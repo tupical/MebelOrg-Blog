@@ -37,12 +37,13 @@ class MediaController extends Controller
             $name = $request->input('name');
         }
 
-        return new MediaResource(
+		$return = new MediaResource(
             MediaLibrary::first()
                         ->addMedia($image)
                         ->usingName($name)
                         ->toMediaCollection()
         );
+        return $return;
     }
 
     /**

@@ -49,7 +49,7 @@ class MediaLibraryController extends Controller
         if ($request->filled('name')) {
             $name = $request->input('name');
         }
-
+        
         MediaLibrary::first()
             ->addMedia($image)
             ->usingName($name)

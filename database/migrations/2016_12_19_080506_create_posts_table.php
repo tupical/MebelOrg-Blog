@@ -17,9 +17,15 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->integer('author_id')->unsigned()->default(0);
             $table->foreign('author_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('title');
-            $table->text('content');
+            $table->integer('category_id')->nullable();
+            $table->string('title')->nullable();
+            $table->text('content')->nullable();
+            $table->string('short_content')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->integer('rating')->nullable();
             $table->datetime('posted_at');
+            $table->boolean('published')->default(0);
             $table->timestamps();
         });
     }

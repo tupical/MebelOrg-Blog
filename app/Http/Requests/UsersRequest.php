@@ -25,6 +25,7 @@ class UsersRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255', new AlphaName],
             'email' => 'required|email|unique:users,email,' . auth()->user()->id,
+            'image' => 'image|mimes:jpg,png',
         ];
     }
 }

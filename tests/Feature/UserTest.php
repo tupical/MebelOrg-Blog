@@ -43,7 +43,7 @@ class UserTest extends TestCase
             ->get('/settings/account')
             ->assertStatus(200)
             ->assertSee('My profile')
-            ->assertSee('My public profile')
+            ->assertSee('Профиль') 
             ->assertSee($user->name)
             ->assertSee($user->email)
             ->assertSee('Security')

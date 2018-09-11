@@ -19,10 +19,10 @@ class CreateMediaTableWithMediaLibrary extends Migration
             $table->string('file_name');
             $table->string('mime_type')->nullable();
             $table->string('disk');
-            $table->unsignedInteger('size');
-            $table->json('manipulations');
-            $table->json('custom_properties');
-            $table->json('responsive_images');
+            $table->unsignedInteger('size'); 
+            $table->text('manipulations');
+            $table->text('custom_properties');
+            $table->text('responsive_images'); 
             $table->datetime('posted_at');
             $table->unsignedInteger('order_column')->nullable();
             $table->nullableTimestamps();

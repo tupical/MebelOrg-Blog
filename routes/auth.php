@@ -21,3 +21,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('newsletter-subscriptions', 'NewsletterSubscriptionController')->only('store');
 });
+
+
+
+Route::get('my_favorites', 'UserController@myFavorites')->middleware('auth');

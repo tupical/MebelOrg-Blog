@@ -36,8 +36,9 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts
     <script src="{{ mix('/js/app.js') }}"></script>
-    <script src="{{ mix('/js/admin.js') }}"></script>
+    <script src="{{ mix('/js/admin.js') }}"></script> -->
+
 </body>
 </html>

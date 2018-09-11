@@ -45,12 +45,22 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => storage_path('/images/post/'),
+        ],
+
+        'local_user' => [
+            'driver' => 'local',
+            'root' => storage_path('/images/avatar/'),
+        ],
+
+        'local_category' => [
+            'driver' => 'local',
+            'root' => storage_path('/images/category/'),
         ],
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
+            'root' => storage_path('/'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],

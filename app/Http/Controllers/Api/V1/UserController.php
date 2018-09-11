@@ -8,7 +8,7 @@ use App\Http\Resources\User as UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-
+use Storage;
 class UserController extends Controller
 {
     /**
@@ -45,5 +45,13 @@ class UserController extends Controller
         $user->update(array_filter($request->only(['name', 'email', 'password'])));
 
         return new UserResource($user);
+    }
+
+    public function destroyImage($user)
+    {
+        $user_item = User::where('id', $user);
+        Storage::disk('local_user')->delete($user_item->get()[0]->image);
+        $user_image = $user_item->update(['image' => null]);
+        return $user_image;
     }
 }

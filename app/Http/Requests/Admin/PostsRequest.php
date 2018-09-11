@@ -43,6 +43,7 @@ class PostsRequest extends FormRequest
             'content' => 'required',
             'posted_at' => 'required|date',
             'thumbnail_id' => 'nullable|exists:media,id',
+ //           'category_id' => ['required', 'exists:categories,id'],
             'author_id' => ['required', 'exists:users,id', new CanBeAuthor],
             'slug' => 'unique:posts,slug,' . (optional($this->post)->id ?: 'NULL'),
         ];

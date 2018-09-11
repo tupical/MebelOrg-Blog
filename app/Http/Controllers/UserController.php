@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\UsersRequest;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Image;
+use Storage;
 
 class UserController extends Controller
 {
@@ -47,11 +51,27 @@ class UserController extends Controller
     public function update(UsersRequest $request): RedirectResponse
     {
         $user = auth()->user();
-
+  
         $this->authorize('update', $user);
 
         $user->update($request->validated());
 
+        if ($request->hasFile('featured_image'))
+        {
+            $image = $request->file('featured_image');
+            $filename = $user->name . '.' . $image->getClientOriginalExtension();
+            $location = storage_path('/images/avatar/' . $filename);
+            Image::make($image)->resize(100, 100)->save($location);
+            $oldFilename = $user->image;
+            $user->image = $filename;
+            Storage::disk('local_user')->delete($oldFilename);
+        }
+        $user->save();
         return redirect()->route('users.edit')->withSuccess(__('users.updated'));
+    }
+
+
+    public function myFavorites() {
+        $myFavorites = Auth::user()->favorites; return view('users.my_favorites', compact('myFavorites'));
     }
 }

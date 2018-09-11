@@ -16,6 +16,18 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
+        
+        'App\Events\PostHasViewed' => [
+            'App\Listeners\Counter',
+        ],
+
+        'App\Events\PostHasRating' => [
+            'App\Listeners\Ratings',
+        ],
+
+        'App\Events\PostTotallView' => [
+            'App\Listeners\TotalView',
+        ],
     ];
 
     /**

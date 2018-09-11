@@ -14,3 +14,11 @@ $("#sidenavToggler").click(function(e) {
 $('.navbar-sidenav [data-toggle="tooltip"]').tooltip({
   template: '<div class="tooltip navbar-sidenav-tooltip" role="tooltip"><div class="arrow"></div><div class="tooltip-inner"></div></div>'
 });
+
+
+var editor = new MediumEditor('.editable');
+$(function () {
+    $('.editable').mediumInsert({
+        editor: editor
+    });
+});

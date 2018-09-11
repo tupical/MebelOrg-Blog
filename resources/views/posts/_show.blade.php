@@ -1,27 +1,18 @@
-<div class="card">
-  @if ($post->hasThumbnail())
-    <a href="{{ route('posts.show', $post)}}">
-      {{ Html::image($post->thumbnail->getUrl('thumb'), $post->thumbnail->name, ['class' => 'card-img-top']) }}
-    </a>
-  @endif
-
-  <div class="card-body">
-    <h4 v-pre class="card-title">{{ link_to_route('posts.show', $post->title, $post) }}</h4>
-
-    <p class="card-text"><small v-pre class="text-muted">{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</small></p>
-
-    <p class="card-text">
-      <small class="text-muted">{{ humanize_date($post->posted_at) }}</small><br>
-      <small class="text-muted">
-        <i class="fa fa-comments-o" aria-hidden="true"></i> {{ $post->comments_count }}
-        <like
-          likes_count="{{ $post->likes_count }}"
-          liked="{{ $post->isLiked() }}"
-          item_id="{{ $post->id }}"
-          item_type="posts"
-          logged_in="{{ Auth::check() }}"
-        ></like>
-      </small>
-    </p>
-  </div>
+<div class="news " onclick="window.location='{{ route('posts.show', $post)}}'">
+	@if ($post->image)){{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
+	@if (isset($post->category->id))<a class="news__label" href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>@endif
+	<div class="news__wrap_big">
+		<p class="news__title_big">{{ $post->title }}</p>
+		<div class="news__info">
+			<p class="news__date">{{ humanize_date($post->posted_at) }}</p>
+			<div class="news__views">
+				<p class="news__views_val">{{$post->view_count}}</p>
+				<img src="img/blog-eye.svg" alt="">
+			</div>
+			<div class="news__rating">
+				<p class="news__rating_val">{{ $post->rating }}/5</p>
+				<img src="img/blog-rate.svg" alt="">
+			</div>
+		</div>
+	</div>
 </div>
