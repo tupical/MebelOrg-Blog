@@ -1,3 +1,4 @@
+
 @auth
   <div class="comment-leave d-flex flex-column mt-5">
     <p class="comment-leave__title mb-2">Оставьте свой комментарий</p>

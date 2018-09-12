@@ -10,7 +10,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
-
+use Image;
+use Storage;
 class Post extends Model
 {
     use Likeable;
@@ -180,6 +181,27 @@ class Post extends Model
     public function rating()
     {
         return $this->belongsToMany(Rating::class); 
+    }
+
+    public function favor()
+    {
+        return $this->belongsToMany(User::class, 'favorites', 'post_id', 'user_id');
+    }
+
+    public static function createImage($request, array $size, $type)
+    {
+        $image = $request;
+        if (!$type)
+        {
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+        }
+        else
+        {
+            $filename = time() . 'pre' . '.' . $image->getClientOriginalExtension();
+        }
+        $location = storage_path('/images/post/' . $filename);
+        Image::make($image)->fit($size[0], $size[1])->save($location);
+        return $filename;
     }
 }
  

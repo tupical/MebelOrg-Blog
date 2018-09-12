@@ -29,7 +29,7 @@
             @forelse ($myFavorites as $post)
                 <div class="col-4">
                     <div class="news news__average" onclick="window.location='{{ route('posts.show', $post)}}'">
-                        @if ($post->hasThumbnail()){{ Html::image($post->thumbnail->getUrl(), $post->thumbnail->name, ['class' => '']) }}@endif
+                        @if ($post->image){{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
                         @if (isset($post->category->id))<a class="news__label" href="/posts/{{ $post->category->slug }}">{{ $post->category->name }}</a>@endif
                         <div class="news__wrap_big">
                             <p class="news__title_big">{{ $post->title }}</p>
@@ -50,8 +50,6 @@
             @empty
                 <p>You have no favorite posts.</p>
             @endforelse
-
-            {{}}
         </div>
     </div>
 @endsection 

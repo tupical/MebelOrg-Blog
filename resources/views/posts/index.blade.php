@@ -77,15 +77,7 @@
 					</div>
 				</div>
 				<div class="row">
-				@php $key=1; @endphp
-				@foreach($category['posts'] as $post)
-					@if($key % 4 == 0)
-						<div class="col-lg-3 col-0 order-lg-{{$key}} order-{{count($posts_popular)}}"></div>
-						@php $key++; @endphp
-					@endif
-					<div class="col-lg-3 col-sm-6 col-12 order-{{$key}}"> @include ('posts/_list__post_short') </div>
-					@php $key++; @endphp
-				@endforeach
+					@include('posts/_list_formattedbycount')
 				</div>
 			@endforeach
 

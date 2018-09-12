@@ -59,15 +59,17 @@ class PostController extends Controller
     public function store(PostsRequest $request)
     {
 
-        $post = Post::create($request->except(['view_count', 'featured_image']));
+        $post = Post::create($request->except(['view_count', 'featured_image', 'featured_image_preview']));
         if ($request->hasFile('featured_image'))
         {
-            $image = $request->file('featured_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = storage_path('/images/post/' . $filename);
-            Image::make($image)->resize(1600, 900)->save($location);
-            $post->image = $filename;
+            $post->image = Post::createImage($request->file('featured_image'), [1920, 560], 0);
         }
+
+        if ($request->hasFile('featured_image_preview'))
+        {
+            $post->image_preview = Post::createImage($request->file('featured_image_preview'), [600, 600], 1);
+        }
+
         if ($request->input('tags'))
         {
             Tag::createTag($request->input('tags'), $post);
@@ -83,20 +85,24 @@ class PostController extends Controller
     public function update(PostsRequest $request, Post $post): RedirectResponse
     {
         $oldPostauthor = $post->author_id;
-        $post->update($request->except(['view_count', 'featured_image']));
+        $post->update($request->except(['view_count', 'featured_image', 'featured_image_preview']));
         $post->tag()->detach();
 
         if ($request->hasFile('featured_image'))
         {
-            $image = $request->file('featured_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = storage_path('/images/post/' . $filename);
-            Image::make($image)->resize(368, 232)->save($location);
             $oldFilename = $post->image;
-
-            $post->image = $filename;
             Storage::delete($oldFilename);
+            $post->image = Post::createImage($request->file('featured_image'), [1920, 560], 0);
         }
+
+        if ($request->hasFile('featured_image_preview'))
+        {
+            $oldFilename_preview = $post->image_preview;
+            Storage::delete($oldFilename_preview);
+            $post->image_preview = Post::createImage($request->file('featured_image_preview'), [600, 600], 1);
+        }
+
+    
         $post->save();
         if ($request->input('tags'))
         {

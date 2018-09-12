@@ -2,7 +2,24 @@
 @section('title') {{$post->meta_title}} @endsection
 @section('description') {{$post->meta_description}} @endsection
 @section('content')
+
+    @php
+        $name = array(-1);
+        $user_id = 0;
+    @endphp
+    @auth
+        @php
+            $name = $post->favor->pluck('id')->toArray();
+            $user_id = Auth::id();
+        @endphp
+    @endauth
+
 <style>
+    .article__btn-share.unfavorite{
+        opacity: 1;
+        color: #ffc900;
+        border: 1px solid #ffc900;
+    }
     .medium-insert-buttons{
         display: none;
     }
@@ -47,6 +64,14 @@
     -ms-flex-line-pack: justify!important;
     align-content: space-between!important;
 }
+.medium-insert-images-wide{
+        margin: 10px -10%;
+        border-radius: 3px;
+        overflow: hidden;
+}
+    .medium-insert-images-wide img {
+        width: 100%;
+    }
 .article__content p{
 	    padding: 10px 0;
     font-weight: 400;
@@ -72,7 +97,7 @@ blockquote {
                 <div class="col-md-12">
                     <ul class="bread-crumbs__list">
                         <li>
-                            <a class="bread__link bread__home" href="">
+                            <a class="bread__link bread__home" href="/">
                                 Mebel.org
                             </a>
                         </li>
@@ -146,10 +171,10 @@ blockquote {
                                         }})(window,document);
                                 </script>
                                 <div data-mobile-view="false" data-share-size="30" data-like-text-enable="false" data-background-alpha="0.0" data-pid="1788104" data-mode="share" data-background-color="#ffffff" data-hover-effect="rotate-cw" data-share-shape="round" data-share-counter-size="12" data-icon-color="#ffffff" data-mobile-sn-ids="fb.vk.tw.ok.wh.vb.tm." data-text-color="#000000" data-buttons-color="#ffffff" data-counter-background-color="#ffffff" data-share-counter-type="common" data-orientation="vertical" data-following-enable="false" data-sn-ids="fb.vk.ok.tm." data-preview-mobile="false" data-selection-enable="false" data-exclude-show-more="false" data-share-style="6" data-counter-background-alpha="1.0" data-top-button="false" class="uptolike-buttons" ></div>
-                                <button class="article__btn-share" type="button" name="share" data-toggle="modal" data-target="#sign-in-modal">
+                                <button class="article__btn-share @if(in_array($user_id,$name)) unfavorite @else favorite @endif" type="button" name="share" data-toggle="modal" data-target="">
                                     <i class="fas fa-bookmark"></i>
                                 </button>
-                            </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -181,15 +206,16 @@ blockquote {
             </div>
         </div>
     </div>
+
+
 </section>
 
+    <div id="app">
 
 		@include ('comments/_list')
+    </div>
 		@include('posts.another', [$posts_random])
+
+
 @endsection
-
-
-
-
-
 

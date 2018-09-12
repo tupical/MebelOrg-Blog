@@ -6,7 +6,15 @@
 <div class="form-group">
     {{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, [ 'width' => '350']) }}
 
+    <button type="button" class="destroy_image btn btn-link text-danger " ><i class="fa fa-trash" aria-hidden="true" ></i>Удалить картинку</button>
+</div>
+@endif
 
+@if(isset($post->image_preview))
+<div class="form-group">
+    {{ Html::image(asset('/storage/images/post/' . $post->image_preview), $post->image_preview, [ 'width' => '350']) }}
+
+    <button type="button" class="destroy_image_preview btn btn-link text-danger " ><i class="fa fa-trash" aria-hidden="true" ></i>Удалить картинку</button>
 </div>
 @endif
 
@@ -56,6 +64,15 @@
 
     @if ($errors->has('featured_image'))
         <span class="invalid-feedback">{{ $errors->first('featured_image') }}</span>
+    @endif
+</div>
+
+<div class="form-group">
+    {!! Form::label('featured_image_preview', __('posts.attributes.featured_image_preview')) !!}
+    {!! Form::file('featured_image_preview') !!}
+
+    @if ($errors->has('featured_image_preview'))
+        <span class="invalid-feedback">{{ $errors->first('featured_image_preview') }}</span>
     @endif
 </div>
 
@@ -156,7 +173,20 @@
         margin-bottom: .5rem;
         font-family: Roboto,sans-serif;
     }
-    .medium-insert-images-right.mediumInsert, .medium-insert-images.medium-insert-images-right{
+    .article__content-img-big {
+        margin: 10px -10%;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    .medium-insert-images-left {
+        float: left;
+        margin: 20px 25px 10px -10%;
+        position: relative;
+        max-width: calc(40% + 50px);
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    .medium-insert-images-right {
         float: right;
         margin: 20px -10% 10px 25px;
         position: relative;
@@ -165,15 +195,44 @@
         border-radius: 3px;
         overflow: hidden;
     }
-    .medium-insert-images-left.mediumInsert, .medium-insert-images.medium-insert-images-left, .mediumInsert.small{
-        float: left;
-        margin: 20px 25px 10px -10%;
-        position: relative;
-        max-width: calc(40% + 50px);
+    .medium-insert-images-grid figure{
+        width: calc(100% - 20px);
+        margin: 0 10px;
+        text-align: center;
         border-radius: 3px;
         overflow: hidden;
     }
-    blockquote{
+    .medium-insert-images-grid{
+        margin: 10px calc(-10% - 20px);
+        text-align: center;
+        border-radius: 3px;
+        overflow: hidden;
+        display: -ms-flex;
+        display: -o-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-line-pack: justify!important;
+        align-content: space-between!important;
+    }
+    .medium-insert-images-wide{
+        margin: 10px -10%;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    .medium-insert-images-wide img {
+        width: 100%;
+    }
+    .article__content p{
+        padding: 10px 0;
+        font-weight: 400;
+        font-style: normal;
+        line-height: 1.68;
+        font-family: Vollkorn,serif;
+    }
+    blockquote, figure {
+        margin: 0px 0px 1rem;
+    }
+    blockquote {
         margin: 20px -10%;
         padding: 20px 10%;
         background: #f7f7f7;
@@ -182,6 +241,7 @@
         font-family: Vollkorn,serif;
         font-size: 24px;
     }
+
     .content-edit{
         padding-right:10px;
         padding-left:10px;

@@ -1,160 +1,58 @@
-# Laravel 5.6 blog
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-[![Build Status](https://travis-ci.org/guillaumebriday/laravel-blog.svg?branch=master)](https://travis-ci.org/guillaumebriday/laravel-blog)
-[![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/guillaumebriday)
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+</p>
 
-The purpose of this repository is to show good development practices on [Laravel](http://laravel.com/) as well as to present cases of use of the framework's functionalities like :
+## About Laravel
 
-- [Authentication](https://laravel.com/docs/5.6/authentication)
-- API
-  - Token authentication
-  - [API Resources](https://laravel.com/docs/5.6/eloquent-resources)
-  - Versioning
-- [Blade](https://laravel.com/docs/5.6/blade)
-- [Broadcasting](https://laravel.com/docs/5.6/broadcasting)
-- [Cache](https://laravel.com/docs/5.6/cache)
-- [Filesystem](https://laravel.com/docs/5.6/filesystem)
-- [Helpers](https://laravel.com/docs/5.6/helpers)
-- [Horizon](https://laravel.com/docs/5.6/horizon)
-- [Localization](https://laravel.com/docs/5.6/localization)
-- [Mail](https://laravel.com/docs/5.6/mail)
-- [Migrations](https://laravel.com/docs/5.6/migrations)
-- [Policies](https://laravel.com/docs/5.6/authorization)
-- [Providers](https://laravel.com/docs/5.6/providers)
-- [Requests](https://laravel.com/docs/5.6/validation#form-request-validation)
-- [Seeding & Factories](https://laravel.com/docs/5.6/seeding)
-- [Testing](https://laravel.com/docs/5.6/testing)
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
 
-Beside Laravel, this project uses other tools like :
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-- [Bootstrap 4](https://getbootstrap.com/)
-- [PHP-CS-Fixer](https://github.com/FriendsOfPhp/PHP-CS-Fixer)
-- [Travis CI](https://travis-ci.org/)
-- [Font Awesome](http://fontawesome.io/)
-- [Vue.js](https://vuejs.org/)
-- [axios](https://github.com/mzabriskie/axios)
-- [Redis](https://redis.io/)
-- [spatie/laravel-medialibrary](https://github.com/spatie/laravel-medialibrary)
-- Many more to discover.
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
 
-## Some screenshots
+## Learning Laravel
 
-You can find some screenshots of the application on : [https://imgur.com/a/Jbnwj](https://imgur.com/a/Jbnwj)
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
 
-## Installation
+If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
 
-Development environment requirements :
-- [Docker](https://www.docker.com) >= 17.06 CE
-- [Docker Compose](https://docs.docker.com/compose/install/)
+## Laravel Sponsors
 
-Setting up your development environment on your local machine :
-```
-$ git clone https://github.com/guillaumebriday/laravel-blog.git
-$ cd laravel-blog
-$ cp .env.example .env
-$ docker-compose run --rm --no-deps blog-server composer install
-$ docker-compose run --rm --no-deps blog-server php artisan key:generate
-$ docker-compose run --rm --no-deps blog-server php artisan vendor:publish --provider="Laravel\Horizon\HorizonServiceProvider"
-$ docker-compose run --rm --no-deps blog-server php artisan storage:link
-$ docker run --rm -it -v $(pwd):/app -w /app node npm install
-$ docker-compose up -d
-```
+We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
 
-Now you can access the application via [http://localhost:8000](http://localhost:8000).
-
-**There is no need to run ```php artisan serve```. PHP is already running in a dedicated container.**
-
-## Before starting
-You need to run the migrations with the seeds :
-```
-$ docker-compose run --rm blog-server php artisan migrate --seed
-```
-
-This will create a new user that you can use to sign in :
-```
-Email : darthvader@deathstar.ds
-Password : 4nak1n
-```
-
-And then, compile the assets :
-```
-$ docker run --rm -it -v $(pwd):/app -w /app node npm run dev
-```
-
-Starting job for newsletter :
-```
-$ docker-compose run blog-server php artisan tinker
-> PrepareNewsletterSubscriptionEmail::dispatch();
-```
-
-## Useful commands
-Seeding the database :
-```
-$ docker-compose run --rm blog-server php artisan db:seed
-```
-
-Running tests :
-```
-$ docker-compose run --rm blog-server ./vendor/bin/phpunit --stop-on-failure
-```
-
-Running php-cs-fixer :
-```
-$ docker-compose run --rm --no-deps blog-server ./vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --dry-run --diff
-```
-
-Generating backup :
-```
-$ docker-compose run --rm blog-server php artisan backup:run
-```
-
-Generating fake data :
-```
-$ docker-compose run --rm blog-server php artisan db:seed --class=DevDatabaseSeeder
-```
-
-Discover package
-```
-$ docker-compose run --rm --no-deps blog-server php artisan package:discover
-```
-
-In development environnement, rebuild the database :
-```
-$ docker-compose run --rm blog-server php artisan migrate:fresh --seed
-```
-
-## Accessing the API
-
-Clients can access to the REST API. API requests require authentication via token. You can create a new token in your user profil.
-
-Then, you can use this token either as url parameter or in Authorization header :
-
-```
-# Url parameter
-GET http://laravel-blog.app/api/v1/posts?api_token=your_private_token_here
-
-# Authorization Header
-curl --header "Authorization: Bearer your_private_token_here" http://laravel-blog.app/api/v1/posts
-```
-
-API are prefixed by ```api``` and the API version number like so ```v1```.
-
-Do not forget to set the ```X-Requested-With``` header to ```XMLHttpRequest```. Otherwise, Laravel won't recognize the call as an AJAX request.
-
-To list all the available routes for API :
-
-```bash
-$ docker-compose run --rm --no-deps blog-server php artisan route:list --path=api
-```
-
-## More details
-
-More details are available or to come on [Guillaume Briday's blog](https://blog.guillaumebriday.fr) (French).
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[British Software Development](https://www.britishsoftware.co)**
+- [Fragrantica](https://www.fragrantica.com)
+- [SOFTonSOFA](https://softonsofa.com/)
+- [User10](https://user10.com)
+- [Soumettre.fr](https://soumettre.fr/)
+- [CodeBrisk](https://codebrisk.com)
+- [1Forge](https://1forge.com)
+- [TECPRESSO](https://tecpresso.co.jp/)
+- [Pulse Storm](http://www.pulsestorm.net/)
+- [Runtime Converter](http://runtimeconverter.com/)
+- [WebL'Agence](https://weblagence.com/)
 
 ## Contributing
 
-Do not hesitate to contribute to the project by adapting or adding features ! Bug reports or pull requests are welcome.
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
-This project is released under the [MIT](http://opensource.org/licenses/MIT) license.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

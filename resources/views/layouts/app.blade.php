@@ -434,7 +434,10 @@
 <!-- Slick -->
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
+
 <script src="https://mebelorg.alexandervaa.ru/js/main.js"></script>
+
+
 
 <script>
     $(document).ready(function() {
@@ -473,10 +476,11 @@
                     location.reload();
                 }
             });
-        })
+        });
         @endif
-
+        
         @auth
+        @if(isset($post) )
         $(".favorite").click(function() {
             var fd = new FormData;
             fd.append('_method', 'POST');
@@ -487,14 +491,39 @@
                 processData: false,
                 contentType: false
             }).done(function(res) {
-                if (res == '1')
+                if (res == 1)
                 {
                     location.reload();
                 }
             });
-        })
+        });
+        @endif
+        @endauth
+
+        @auth
+        @if(isset($post) )
+        $(".unfavorite").click(function() {
+            var fd = new FormData;
+            fd.append('_method', 'POST');
+            $.ajax({
+                url: "/api/v1/unfavorite/{{$post->id}}?api_token={{auth()->user()->api_token}}",
+                data: fd,
+                method: 'POST',
+                processData: false,
+                contentType: false
+            }).done(function(res) {
+                if (res == 1)
+                {
+                    location.reload();
+                }
+            });
+        });
+        @endif
         @endauth
     });
 </script>
+
+
+
 </body>
 </html>

@@ -36,9 +36,7 @@
     {!! Form::model($post, ['method' => 'DELETE', 'route' => ['admin.posts.destroy', $post], 'class' => 'form-inline pull-right', 'data-confirm' => __('forms.posts.delete')]) !!}
         {!! Form::button('<i class="fa fa-trash" aria-hidden="true"></i> ' . __('posts.delete'), ['class' => 'btn btn-link text-danger', 'name' => 'submit', 'type' => 'submit']) !!}
     {!! Form::close() !!}
-	<button class="destroy_image">
-jhkikjh
-</button>
+
 
 
 
@@ -62,9 +60,9 @@ jhkikjh
                         aria: 'header type 2',
                         tagNames: ['h2'],
                         contentDefault: '<b>H2</b>',
-                        classList: ['custom-class-h1'],
+                        classList: ['custom-class-h2'],
                         attrs: {
-                            'data-custom-attr': 'attr-value-h1'
+                            'data-custom-attr': 'attr-value-h2'
                         }
                     },
                     {
@@ -73,9 +71,42 @@ jhkikjh
                         aria: 'header type 3',
                         tagNames: ['h3'],
                         contentDefault: '<b>H3</b>',
-                        classList: ['custom-class-h2'],
+                        classList: ['custom-class-h3'],
                         attrs: {
-                            'data-custom-attr': 'attr-value-h2'
+                            'data-custom-attr': 'attr-value-h3'
+                        }
+                    },
+                    {
+                        name: 'h4',
+                        action: 'append-h4',
+                        aria: 'header type 4',
+                        tagNames: ['h3'],
+                        contentDefault: '<b>H4</b>',
+                        classList: ['custom-class-h4'],
+                        attrs: {
+                            'data-custom-attr': 'attr-value-h4'
+                        }
+                    },
+                    {
+                        name: 'h5',
+                        action: 'append-h5',
+                        aria: 'header type 5',
+                        tagNames: ['h5'],
+                        contentDefault: '<b>H5</b>',
+                        classList: ['custom-class-h5'],
+                        attrs: {
+                            'data-custom-attr': 'attr-value-h5'
+                        }
+                    },
+                    {
+                        name: 'h6',
+                        action: 'append-h6',
+                        aria: 'header type 6',
+                        tagNames: ['h6'],
+                        contentDefault: '<b>H6</b>',
+                        classList: ['custom-class-h6'],
+                        attrs: {
+                            'data-custom-attr': 'attr-value-h6'
                         }
                     },
 					{
@@ -101,6 +132,16 @@ jhkikjh
                     'quote',
                     'anchor'
                 ]
+            },
+            anchor: {
+                /* These are the default options for anchor form,
+                   if nothing is passed this is what it used */
+                customClassOption: null,
+                customClassOptionText: 'Button',
+                linkValidation: false,
+                placeholderText: 'Paste or type a link',
+                targetCheckbox: true,
+                targetCheckboxText: 'В новом окне'
             }
         }
 	);
@@ -126,6 +167,23 @@ jhkikjh
 		fd.append('_method', 'DELETE');
 		$.ajax({
 			url: "/api/v1/posts/<?=$post->slug?>/image?api_token={{auth()->user()->api_token}}",
+			data: fd,
+			method: 'POST',
+			processData: false,
+			contentType: false
+		}).done(function(res) {
+			if (res == '1')
+			{
+				location.reload();
+			}
+		});
+	})
+
+    $(".destroy_image_preview").click(function() {
+		var fd = new FormData;
+		fd.append('_method', 'DELETE');
+		$.ajax({
+			url: "/api/v1/posts/<?=$post->slug?>/image_preview?api_token={{auth()->user()->api_token}}",
 			data: fd,
 			method: 'POST',
 			processData: false,

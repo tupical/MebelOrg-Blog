@@ -9,6 +9,7 @@ use App\Models\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Facades\Auth;
 use App\Events\PostHasRating;
 use Storage;
 
@@ -70,7 +71,7 @@ class PostController extends Controller
 
     public function favoritePost(Post $post)
     {
-        Auth::user()->favorites()->attach($post->id); return back();
+        Auth::user()->favorites()->attach($post->id); return '1';
     }
 
     /*
@@ -80,14 +81,14 @@ class PostController extends Controller
 
     public function unFavoritePost(Post $post)
     {
-        Auth::user()->favorites()->detach($post->id); return back();
+        Auth::user()->favorites()->detach($post->id); return '1';
     }
 
     public function updateRating(Request $request, Post $post)
     {
         session_start();
         if(!isset($_SESSION['hasrating']))
-        {
+        {  
             $_SESSION['hasrating'] = 0;
         }
         if($_SESSION['hasrating'] != $post->id) 
@@ -97,7 +98,7 @@ class PostController extends Controller
             $_SESSION['hasrating'] = $post->id;    
         }
         session_write_close();
-        return '1';  
+        return '1';     
     }
 
     public function destroyImage($post)
@@ -106,5 +107,13 @@ class PostController extends Controller
         Storage::delete($post_item->get()[0]->image);
         $post_image = $post_item->update(['image' => null]);
         return $post_image;
+    }
+
+    public function destroyImagePreview($post)
+    {
+        $post_item_pre = Post::where('slug', $post);
+        Storage::delete($post_item_pre->get()[0]->image_preview);
+        $post_image_pre = $post_item_pre->update(['image_preview' => null]);
+        return $post_image_pre;
     }
 }

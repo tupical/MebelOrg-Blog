@@ -34,4 +34,7 @@
       @yield('main_content')
   </div>
 </div>
+
 @endsection
+
+

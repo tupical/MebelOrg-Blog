@@ -22,9 +22,10 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
         Route::post('/posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
         Route::delete('/posts/{post}/likes', 'PostLikeController@destroy')->name('posts.likes.destroy');
         //Route::post('/posts/{post}/favorites' , 'PostFavoriteController@update')->name('posts.favorite.update');
-        Route::post('favorite/{post}', 'PostsController@favoritePost');
-        Route::post('unfavorite/{post}', 'PostsController@unFavoritePost');
-        
+        Route::post('favorite/{post}', 'PostController@favoritePost');
+        Route::post('unfavorite/{post}', 'PostController@unFavoritePost');
+        Route::delete('/posts/{post}/image', 'PostController@destroyImage');
+        Route::delete('/posts/{post}/image_preview', 'PostController@destroyImagePreview');
         // Users
         Route::apiResource('users', 'UserController')->only('update');
         Route::delete('users/{user}/image', 'UserController@destroyImage');
@@ -33,7 +34,7 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
         //category
         Route::delete('/categories/{category}/image', 'CategoryController@destroyImage');
-        Route::delete('/posts/{post}/image', 'PostController@destroyImage');
+        
     });
 
     Route::post('/authenticate', 'Auth\AuthenticateController@authenticate')->name('authenticate');
