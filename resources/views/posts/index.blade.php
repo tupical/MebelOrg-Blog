@@ -71,6 +71,7 @@
 			</div>
 
 			@foreach($categories as $category)
+				@if($category['posts']->count())
 				<div class="row">
 					<div class="news-title-wrap d-flex align-items-baseline">
 						<h2 class="news-big-title">{{$category['category']->name}}</h2><a class="news__all ml-3" href="{{route('categories.show', $category['category'])}}">Все статьи</a>
@@ -79,6 +80,7 @@
 				<div class="row">
 					@include('posts/_list_formattedbycount')
 				</div>
+				@endif
 			@endforeach
 
 		</div>

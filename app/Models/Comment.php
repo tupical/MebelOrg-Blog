@@ -20,7 +20,8 @@ class Comment extends Model
       'author_id',
       'post_id',
       'content',
-      'posted_at'
+      'posted_at',
+        'email'
     ];
 
     /**

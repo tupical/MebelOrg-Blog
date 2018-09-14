@@ -31,7 +31,8 @@ class PostCommentController extends Controller
         $comment = new CommentResource(
             Auth::user()->comments()->create([
                 'post_id' => $post->id,
-                'content' => $request->input('content')
+                'content' => $request->input('content'),
+                'email' => $request->input('email')
             ])
         );
 

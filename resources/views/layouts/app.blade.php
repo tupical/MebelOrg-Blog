@@ -42,7 +42,7 @@
                     <p class="modal-window__text_descr">Получите доступ к Личному кабинету, своим заказам, избранному и рекомендациям</p>
                 </div>
                 <div class="modal-window__content d-flex align-items-end flex-column">
-                    <form class="modal-window__form">
+                    {!! Form::open(['route' => 'login', 'role' => 'form', 'method' => 'POST', 'class' => 'modal-window__form']) !!}
                         <input id="email-sign-in" type="email" name="email" class="modal-window__input-email" required placeholder="Адрес электронной почты:">
                         <div class="modal-window__form-password">
                             <input id="password-sign-in" class="modal-window__input-password" required type="password" name="password" placeholder="Пароль: ">
@@ -55,7 +55,7 @@
                         </div>
                         <a class="modal-window__forget-password" href="#password-recovery-modal" data-toggle="modal" data-dismiss="modal">Забыли пароль?</a>
                         <button id="button-go-sign-in" class="modal-window__button-go">Войти</button>
-                    </form>
+                    {!! Form::close() !!}
                     <div class="modal-window__bottom d-flex flex-column mt-auto">
                         <div class="modal-window__transition">Нет аккаунта?</div>
                         <button type="button" class="modal-window__button-create-account" data-toggle="modal" data-dismiss="modal" data-target="#sign-out-modal">Зарегистрироваться</button>
@@ -164,7 +164,7 @@
             </div>
             <div class="modal-body">
                 <div class="modal-send-error__address">Адрес страницы с ошибкой: <a class="modal-send-error__link" href="#">http://tarampampam.github.io/jquery.textmistake/</a></div>
-                <img class="modal-send-error__img" src="img/send-error.jpg" alt="">
+                <img class="modal-send-error__img" src="/img/send-error.jpg" alt="">
                 <div class="modal-send-error__text">Ваш комментарий или корректная версия:</div>
                 <input class="modal-send-error__input" type="text" placeholder="Введите комментарий">
                 <div class="modal-send-error__btns">
@@ -184,7 +184,7 @@
 
     <div class="cart-sidebar__empty">
         <div class="cart-sidebar__empty-pic">
-            <img class="cart-sidebar__empty-img" src="img/cart-cat.svg" alt="">
+            <img class="cart-sidebar__empty-img" src="/img/cart-cat.svg" alt="">
         </div>
         <div class="cart-sidebar__empty-title">В корзине пусто?</div>
         <div class="cart-sidebar__empty-title">Это не страшно!</div>
@@ -200,7 +200,7 @@
             <div class="cart-sidebar__full-item">
                 <a class="cart-sidebar__full-link" href="javascript:void(0);">
                     <div class="cart-sidebar__full-pic">
-                        <img class="cart-sidebar__full-img" src="img/good-1.jpg" alt="">
+                        <img class="cart-sidebar__full-img" src="/img/good-1.jpg" alt="">
                     </div>
                     <div class="cart-sidebar__full-content">
                         <div class="cart-sidebar__full-title">ТВ-тумба Астра 1</div>
@@ -212,7 +212,7 @@
             <div class="cart-sidebar__full-item">
                 <a class="cart-sidebar__full-link" href="javascript:void(0);">
                     <div class="cart-sidebar__full-pic">
-                        <img class="cart-sidebar__full-img" src="img/good-1.jpg" alt="">
+                        <img class="cart-sidebar__full-img" src="/img/good-1.jpg" alt="">
                     </div>
                     <div class="cart-sidebar__full-content">
                         <div class="cart-sidebar__full-title">ТВ-тумба Астра 1</div>
@@ -224,7 +224,7 @@
             <div class="cart-sidebar__full-item">
                 <a class="cart-sidebar__full-link" href="javascript:void(0);">
                     <div class="cart-sidebar__full-pic">
-                        <img class="cart-sidebar__full-img" src="img/good-1.jpg" alt="">
+                        <img class="cart-sidebar__full-img" src="/img/good-1.jpg" alt="">
                     </div>
                     <div class="cart-sidebar__full-content">
                         <div class="cart-sidebar__full-title">ТВ-тумба Астра 1</div>
@@ -236,7 +236,7 @@
             <div class="cart-sidebar__full-item">
                 <a class="cart-sidebar__full-link" href="javascript:void(0);">
                     <div class="cart-sidebar__full-pic">
-                        <img class="cart-sidebar__full-img" src="img/good-1.jpg" alt="">
+                        <img class="cart-sidebar__full-img" src="/img/good-1.jpg" alt="">
                     </div>
                     <div class="cart-sidebar__full-content">
                         <div class="cart-sidebar__full-title">ТВ-тумба Астра 1</div>
@@ -248,7 +248,7 @@
             <div class="cart-sidebar__full-item">
                 <a class="cart-sidebar__full-link" href="javascript:void(0);">
                     <div class="cart-sidebar__full-pic">
-                        <img class="cart-sidebar__full-img" src="img/good-1.jpg" alt="">
+                        <img class="cart-sidebar__full-img" src="/img/good-1.jpg" alt="">
                     </div>
                     <div class="cart-sidebar__full-content">
                         <div class="cart-sidebar__full-title">ТВ-тумба Астра 1</div>
@@ -260,7 +260,7 @@
             <div class="cart-sidebar__full-item">
                 <a class="cart-sidebar__full-link" href="javascript:void(0);">
                     <div class="cart-sidebar__full-pic">
-                        <img class="cart-sidebar__full-img" src="img/good-1.jpg" alt="">
+                        <img class="cart-sidebar__full-img" src="/img/good-1.jpg" alt="">
                     </div>
                     <div class="cart-sidebar__full-content">
                         <div class="cart-sidebar__full-title">ТВ-тумба Астра 1</div>
@@ -272,7 +272,7 @@
             <div class="cart-sidebar__full-item">
                 <a class="cart-sidebar__full-link" href="javascript:void(0);">
                     <div class="cart-sidebar__full-pic">
-                        <img class="cart-sidebar__full-img" src="img/good-1.jpg" alt="">
+                        <img class="cart-sidebar__full-img" src="/img/good-1.jpg" alt="">
                     </div>
                     <div class="cart-sidebar__full-content">
                         <div class="cart-sidebar__full-title">ТВ-тумба Астра 1</div>
@@ -284,7 +284,7 @@
             <div class="cart-sidebar__full-item">
                 <a class="cart-sidebar__full-link" href="javascript:void(0);">
                     <div class="cart-sidebar__full-pic">
-                        <img class="cart-sidebar__full-img" src="img/good-1.jpg" alt="">
+                        <img class="cart-sidebar__full-img" src="/img/good-1.jpg" alt="">
                     </div>
                     <div class="cart-sidebar__full-content">
                         <div class="cart-sidebar__full-title">ТВ-тумба Астра 1</div>
@@ -296,7 +296,7 @@
             <div class="cart-sidebar__full-item">
                 <a class="cart-sidebar__full-link" href="javascript:void(0);">
                     <div class="cart-sidebar__full-pic">
-                        <img class="cart-sidebar__full-img" src="img/good-1.jpg" alt="">
+                        <img class="cart-sidebar__full-img" src="/img/good-1.jpg" alt="">
                     </div>
                     <div class="cart-sidebar__full-content">
                         <div class="cart-sidebar__full-title">ТВ-тумба Астра 1</div>
@@ -331,7 +331,7 @@
 
         <div class="city-choice__text">Вам показаны товары в городе</div>
         <div class="city-choice__name">
-            <img src="img/city-choise-icon.svg" alt="">Москва
+            <img src="/img/city-choise-icon.svg" alt="">Москва
         </div>
         <div class="city-choice__auto">Определять автоматически</div>
         <div class="city-choice__field">
@@ -391,17 +391,17 @@
                 <div class="search-photo-modal__example-content">
                     <!-- ссылки только для теста -->
                     <a class="search-photo-modal__example-item" href="/search-photo--many.html">
-                        <img src="img/other1.jpg" alt="">
+                        <img src="/img/other1.jpg" alt="">
                     </a>
                     <a class="search-photo-modal__example-item" href="/search-photo--one.html">
-                        <img src="img/card4.jpg" alt="">
+                        <img src="/img/card4.jpg" alt="">
                     </a>
                     <!-- ссылки только для теста конец -->
                     <div class="search-photo-modal__example-item">
-                        <img src="img/card5.jpg" alt="">
+                        <img src="/img/card5.jpg" alt="">
                     </div>
                     <div class="search-photo-modal__example-item">
-                        <img src="img/product-big-1.jpg" alt="">
+                        <img src="/img/product-big-1.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -459,7 +459,7 @@
             });
         })
         @endif
-        @if(isset($post) && ((!isset($_SESSION['hasrating']) || $_SESSION['hasrating'] != $post->id) ))
+        @if(isset($post) && (!isset($_SESSION['hasrating']) || !in_array($post->id, $_SESSION['hasrating'])))
         $(".article__underground-stars .fa-star").click(function() {
             var fd = new FormData;
             fd.append('_method', 'POST');
@@ -469,9 +469,9 @@
                 data: fd,
                 method: 'POST',
                 processData: false,
-                contentType: false
+                contentType: false 
             }).done(function(res) {
-                if (res == '1')
+                if (res)
                 {
                     location.reload();
                 }
@@ -491,7 +491,7 @@
                 processData: false,
                 contentType: false
             }).done(function(res) {
-                if (res == 1)
+                if (res)
                 {
                     location.reload();
                 }
@@ -512,7 +512,7 @@
                 processData: false,
                 contentType: false
             }).done(function(res) {
-                if (res == 1)
+                if (res)
                 {
                     location.reload();
                 }
@@ -520,6 +520,41 @@
         });
         @endif
         @endauth
+
+        @auth
+        @if(isset($post) )
+        $(".comment-leave__btn").click(function() {
+            var fd = new FormData;
+            fd.append('_method', 'POST');
+            fd.append('content', $('.comment-leave__form_textarea').val());
+            fd.append('email', $('.comment-leave__form_input').val());
+            $.ajax({
+                url: "/api/v1/posts/{{$post->id}}/comments?api_token={{auth()->user()->api_token}}",
+                data: fd,
+                method: 'POST',
+                processData: false,
+                contentType: false
+            }).done(function(res) {
+                console.log(res);
+                if (res.data)
+                {
+                    location.reload();
+                }
+            });
+        });
+
+        
+        @endif
+        @endauth
+
+		$('.medium-insert-images').each(function (i) {
+            $('img', this).each(function () {
+                if ($(this).parent().is('a') === false) {
+                    $(this).wrap('<a href="'+ ($(this).attr('src')) +'" data-fancybox="gallery"  />');
+                }
+            });
+        });
+
     });
 </script>
 

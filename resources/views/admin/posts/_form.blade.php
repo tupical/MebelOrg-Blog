@@ -20,7 +20,7 @@
 
 <div class="form-group">
     {!! Form::label('title', __('posts.attributes.title')) !!}
-    {!! Form::text('title', null, ['class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'required']) !!}
+    {!! Form::text('title', null, ['autocomplete' => 'off', 'class' => 'form-control' . ($errors->has('title') ? ' is-invalid' : ''), 'required']) !!}
 
     @if ($errors->has('title'))
         <span class="invalid-feedback">{{ $errors->first('title') }}</span>
@@ -79,7 +79,7 @@
 
 <div class="form-group">
     {!! Form::label('short_content', __('posts.attributes.short_content')) !!}
-    {!! Form::text('short_content', null, ['class' => 'form-control' . ($errors->has('short_content') ? ' is-invalid' : ''), 'required']) !!}
+    {!! Form::text('short_content', null, ['autocomplete' => 'off', 'class' => 'form-control' . ($errors->has('short_content') ? ' is-invalid' : ''), 'required']) !!}
 
     @if ($errors->has('short_content'))
         <span class="invalid-feedback">{{ $errors->first('short_content') }}</span>
@@ -102,7 +102,7 @@
 
 <div class="form-group">
     {!! Form::label('meta_title', __('posts.attributes.meta_title')) !!}
-    {!! Form::text('meta_title', null, ['class' => 'form-control' . ($errors->has('meta_title') ? ' is-invalid' : ''), 'placeholder' => 'Мета Заголовок', 'value' => '']) !!}
+    {!! Form::text('meta_title', null, ['autocomplete' => 'off', 'class' => 'form-control' . ($errors->has('meta_title') ? ' is-invalid' : ''), 'placeholder' => 'Мета Заголовок', 'value' => '']) !!}
 
     @if ($errors->has('meta_title'))
         <span class="invalid-feedback">{{ $errors->first('meta_title') }}</span>
@@ -111,7 +111,7 @@
 
 <div class="form-group">
     {!! Form::label('meta_description', __('posts.attributes.meta_description')) !!}
-    {!! Form::text('meta_description', null, ['class' => 'form-control' . ($errors->has('meta_description') ? ' is-invalid' : ''), 'placeholder' => 'Мета описание']) !!}
+    {!! Form::text('meta_description', null, ['autocomplete' => 'off', 'class' => 'form-control' . ($errors->has('meta_description') ? ' is-invalid' : ''), 'placeholder' => 'Мета описание']) !!}
 
     @if ($errors->has('meta_description'))
         <span class="invalid-feedback">{{ $errors->first('meta_description') }}</span>
@@ -121,13 +121,13 @@
 <div class="form-group">
     @if (isset($tags))
         {!! Form::label('tags', __('posts.attributes.tags')) !!}
-        {!! Form::text('tags', $tags, ['class' => 'form-control' . ($errors->has('tags') ? ' is-invalid' : ''), 'placeholder' => 'Ключевые слова, через запятую', 'name' => 'tags']) !!}
+        {!! Form::text('tags', $tags, ['autocomplete' => 'off', 'class' => 'form-control' . ($errors->has('tags') ? ' is-invalid' : ''), 'placeholder' => 'Ключевые слова, через запятую', 'name' => 'tags']) !!}
         @if ($errors->has('tags'))
             <span class="invalid-feedback">{{ $errors->first('tags') }}</span>
         @endif
     @else
         {!! Form::label('tags', __('posts.attributes.tags')) !!}
-        {!! Form::text('tags', null, ['class' => 'form-control' . ($errors->has('tags') ? ' is-invalid' : ''), 'placeholder' => 'Ключевые слова, через запятую', 'name' => 'tags']) !!}
+        {!! Form::text('tags', null, ['autocomplete' => 'off', 'class' => 'form-control' . ($errors->has('tags') ? ' is-invalid' : ''), 'placeholder' => 'Ключевые слова, через запятую', 'name' => 'tags']) !!}
         @if ($errors->has('tags'))
             <span class="invalid-feedback">{{ $errors->first('tags') }}</span>
         @endif

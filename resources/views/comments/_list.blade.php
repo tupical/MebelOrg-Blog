@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-12 col-md-7">
-                <h2 class="comments__title mb-4">{{ trans_choice('comments.count', $post->comments_count) }}</h2>
+                <h2 class="comments__title mb-4">Комментарии</h2>
                 @foreach($comments as $comment)
 
 

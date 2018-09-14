@@ -1,5 +1,5 @@
 {
-	"authHost": "http://blog-server",
+	"authHost": "https://develop.tryonceagain.info",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [],
 	"database": "redis",

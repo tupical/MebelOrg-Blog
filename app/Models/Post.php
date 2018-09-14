@@ -5,11 +5,14 @@ namespace App\Models;
 use App\Concern\Likeable;
 use App\Scopes\PostedScope;
 use App\Models\Favorite;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Image;
 use Storage;
 class Post extends Model
@@ -188,20 +191,88 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'favorites', 'post_id', 'user_id');
     }
 
-    public static function createImage($request, array $size, $type)
+    public function createImage(Request $request)
     {
-        $image = $request;
-        if (!$type)
+        if ($request->hasFile('featured_image'))
         {
+            if ($this->image)
+            {
+                Storage::delete($this->image);
+            }
+            $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
+            $location = storage_path('/images/post/' . $filename);
+            Image::make($image)->fit(1920, 500)->save($location);
+            $this->image = $filename;
+            $this->update(['image']);
         }
-        else
+
+        if ($request->hasFile('featured_image_preview'))
         {
-            $filename = time() . 'pre' . '.' . $image->getClientOriginalExtension();
+            if ($this->image_preview)
+            {
+                Storage::delete($this->image_preview);
+            }
+            $imagePre = $request->file('featured_image_preview');
+            $filenamePre = time() . '_preview' . '.' . $imagePre->getClientOriginalExtension();
+            $locationPre = storage_path('/images/post/' . $filenamePre);
+            Image::make($imagePre)->fit(600, 600)->save($locationPre);
+            $this->image_preview = $filenamePre;
+            $this->update(['image_preview']);
         }
-        $location = storage_path('/images/post/' . $filename);
-        Image::make($image)->fit($size[0], $size[1])->save($location);
-        return $filename;
+    }
+
+    public function createTag(Request $request)
+    {   
+        if ($request->input('tags'))
+        {
+            $keywords_array = explode(',' , $request->input('tags'));
+            if (count($keywords_array))
+            {
+                foreach($keywords_array as $keyword)
+                {
+                    $keyword=trim($keyword);
+                    $tags = Tag::select('name')->where('name', [$keyword])->get();
+                    if (!($tags->toArray())) 
+                    {
+                        DB::insert('insert into `tags` (`id`, `name`) values (?, ?)', array(NULL, $keyword));
+                    }
+                }
+                foreach($keywords_array as $keyword)
+                {
+                    $keyword=trim($keyword);
+                    $tags = Tag::select('id')->where('name', [$keyword])->get();
+                    $this->tag()->attach($tags);
+                }   
+            }
+        }
+    }
+
+    public function deleteImage()
+    {
+        return Storage::delete($this->image);
+    }
+
+    public function deleteImagePreview()
+    {
+        return Storage::delete($this->image_preview);
+    }
+
+    public function upRating(Request $request): String
+    {
+        session_start();
+        if(!isset($_SESSION['hasrating']))
+        {  
+            $_SESSION['hasrating'] = array();
+        }
+        if(!in_array($this->id, $_SESSION['hasrating'])) 
+        {
+            $this->rating()->attach($request->rating);
+            $this->p_rating = $this->rating->avg('value');
+            $this->update(['p_rating']);
+            array_push($_SESSION['hasrating'], $this->id);      
+        }   
+        return session_write_close();    
     }
 }
  

@@ -1,0 +1,2 @@
+$(".xzoom").xzoom({tint:"#999",Xoffset:10});
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInpvb21pbmRjYXJkLmpzIl0sIm5hbWVzIjpbIiQiLCJ4em9vbSIsInRpbnQiLCJYb2Zmc2V0Il0sIm1hcHBpbmdzIjoiQUFBQUEsRUFBRSxVQUFVQyxPQUFPQyxLQUFNLE9BQVFDLFFBQVMiLCJmaWxlIjoiem9vbWluZGNhcmQuanMiLCJzb3VyY2VzQ29udGVudCI6WyIkKFwiLnh6b29tXCIpLnh6b29tKHt0aW50OiAnIzk5OScsIFhvZmZzZXQ6IDEwfSk7Il19

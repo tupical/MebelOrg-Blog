@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use App\Events\PostHasRating;
-use Storage;
 
 class PostController extends Controller
 {
@@ -69,9 +68,9 @@ class PostController extends Controller
         return response()->noContent();
     }
 
-    public function favoritePost(Post $post)
+    public function favoritePost(Post $post): String
     {
-        Auth::user()->favorites()->attach($post->id); return '1';
+        Auth::user()->favorites()->attach($post->id); return $post->id;
     }
 
     /*
@@ -79,41 +78,29 @@ class PostController extends Controller
      *  @param Post $post *
      * @return Response */
 
-    public function unFavoritePost(Post $post)
+    public function unFavoritePost(Post $post): String
     {
-        Auth::user()->favorites()->detach($post->id); return '1';
+        Auth::user()->favorites()->detach($post->id); return $post->id;
     }
 
     public function updateRating(Request $request, Post $post)
     {
-        session_start();
-        if(!isset($_SESSION['hasrating']))
-        {  
-            $_SESSION['hasrating'] = 0;
-        }
-        if($_SESSION['hasrating'] != $post->id) 
-        {
-            $post->rating()->attach($request->rating);
-            $post->update(['p_rating' => $post->rating->avg('value')]);
-            $_SESSION['hasrating'] = $post->id;    
-        }
-        session_write_close();
-        return '1';     
+        return $post->upRating($request);    
     }
 
-    public function destroyImage($post)
+    public function destroyImage(Post $post): String
     {
-        $post_item = Post::where('slug', $post);
-        Storage::delete($post_item->get()[0]->image);
-        $post_image = $post_item->update(['image' => null]);
-        return $post_image;
+        $post->deleteImage();
+        $post->image = null;
+        
+        return $post->update(['image']);
     }
 
-    public function destroyImagePreview($post)
+    public function destroyImagePreview(Post $post): String
     {
-        $post_item_pre = Post::where('slug', $post);
-        Storage::delete($post_item_pre->get()[0]->image_preview);
-        $post_image_pre = $post_item_pre->update(['image_preview' => null]);
-        return $post_image_pre;
+       $post->deleteImagePreview();
+       $post->image_preview = null;
+
+       return $post->update(['image_preview']);
     }
 }

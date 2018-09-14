@@ -1,0 +1,19 @@
+<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g opacity="0.19">
+<path opacity="0.19" d="M0 -3.41746e-08L10 5.74698L20 -3.41746e-08V5.74698L10 11.494L0 5.74698V-3.41746e-08Z" transform="translate(2 3.87354)" fill="white" stroke="white" stroke-miterlimit="3" stroke-linecap="square"/>
+<path opacity="0.19" d="M0 -6.83492e-08V11.494L5 14.3675V2.87349L0 -6.83492e-08Z" transform="translate(2 9.62061)" fill="white" stroke="white" stroke-miterlimit="3" stroke-linecap="square"/>
+<path opacity="0.19" d="M5 -6.83492e-08V11.494L0 14.3675V2.87349L5 -6.83492e-08Z" transform="translate(17 9.62061)" fill="white" stroke="white" stroke-miterlimit="3" stroke-linecap="square"/>
+<path opacity="0.19" d="M0.123505 11.4931L5 8.62048V2.87349L0 1.51887e-07L0.123505 11.4931Z" transform="translate(7 12.4941)" fill="white" stroke="white" stroke-miterlimit="3" stroke-linecap="square"/>
+<path opacity="0.19" d="M0 2.87349L5 -1.70873e-08L15 5.74698L10 8.62048L0 2.87349Z" transform="translate(2 1)" fill="white" stroke="white" stroke-miterlimit="3" stroke-linecap="square"/>
+<path opacity="0.19" d="M5 11.494L0 8.62048V2.87349L5 1.51887e-07V11.494Z" transform="translate(12 12.4941)" fill="white" stroke="white" stroke-miterlimit="3" stroke-linecap="square"/>
+<path opacity="0.19" d="M10 2.87349L5 -1.70873e-08L0 2.87349L5 5.74698L10 2.87349Z" transform="translate(12 1)" fill="white" stroke="white" stroke-miterlimit="3" stroke-linecap="square"/>
+</g>
+<path d="M0 20.1144V2.87349L5 -3.41746e-08L10 2.87349L15 -3.41746e-08L20 2.87349V20.1144L15 22.9879L10 20.1144L5 22.9879L0 20.1144Z" transform="translate(2 1.01221)" stroke="white" stroke-miterlimit="3" stroke-linecap="round"/>
+<path d="M0 2.87349L5 3.72123e-07V11.494" transform="translate(12 12.5054)" stroke="white" stroke-miterlimit="3" stroke-linecap="round"/>
+<path d="M0 2.87349L5 1.51887e-07" transform="translate(17 9.63232)" stroke="white" stroke-miterlimit="3" stroke-linecap="round"/>
+<path d="M0 1.51887e-07L10 5.74699" transform="translate(2 9.63232)" stroke="white" stroke-miterlimit="3" stroke-linecap="round"/>
+<path d="M0 5.9236e-07V5.74698" transform="translate(12 15.3794)" stroke="white" stroke-miterlimit="3" stroke-linecap="round"/>
+<path d="M0 3.72123e-07V11.494" transform="translate(7 12.5054)" stroke="white" stroke-miterlimit="3" stroke-linecap="round"/>
+<path d="M0 1.86062e-07L10 5.74698L20 1.86062e-07" transform="translate(2 3.88525)" stroke="white" stroke-miterlimit="3" stroke-linecap="round"/>
+<path d="M0 1.86062e-07L5 2.87349" transform="translate(12 3.88525)" stroke="white" stroke-miterlimit="3" stroke-linecap="round"/>
+</svg>

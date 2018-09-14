@@ -57,24 +57,18 @@ class PostController extends Controller
      */
     public function show(Request $request, Post $post): View
     {
+        $categories = [];
+
         $post->comments_count = $post->comments()->count();
         $post->likes_count = $post->likes()->count();
-        $rating = $post->rating->avg('value');
-        $post->p_rating = $rating;
-        $categories = [];
+        $post->p_rating = $post->rating->avg('value');
+
         event(new PostHasViewed($post));
-        if (isset($post->category->id))
-        {
-            $categories = Category::where('id', '!=', $post->category->id)->get();
-        }
-        else 
-        {
-            $categories = Category::get();
-        }
+ 
         return view('posts.show', [
             'post' => $post,
             'posts_random' => Post::where('id', '!=', $post->id)->orderByRaw("RAND()")->limit(6)->get(),
-            'categories' => $categories,
+            'categories' => Category::where('id', '!=', $post->category->id)->get(),
             'rating' => number_format($post->p_rating, 1),
             'comments' => CommentResource::collection(
                 Comment::latest()->where('post_id',$post->id)->limit(20)->get()

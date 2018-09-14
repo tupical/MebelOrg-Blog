@@ -1,7 +1,5 @@
 @extends('admin.layouts.app')
 
-
-
 <link rel="stylesheet" href="/node_modules/medium-editor/dist/css/medium-editor.min.css">
 <link rel="stylesheet" href="/node_modules/medium-editor/dist/css/themes/default.css" id="medium-editor-theme">
 <!-- Font Awesome for awesome icons. You can redefine icons used in a plugin configuration -->
@@ -10,6 +8,7 @@
 <link rel="stylesheet" href="/node_modules/medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css">
 <!-- JS -->
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+
 <script src="/node_modules/medium-editor/dist/js/medium-editor.min.js"></script>
 <script src="/node_modules/handlebars/dist/handlebars.runtime.min.js"></script>
 <script src="/node_modules/jquery-sortable/source/js/jquery-sortable-min.js"></script>
@@ -19,7 +18,7 @@
 <script src="/node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
 
 <!-- The plugin itself -->
-<script src="/node_modules/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js"></script>
+<script src="/node_modules/medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.js"></script>
 
 
 
@@ -136,17 +135,17 @@
 	$('.editable').mediumInsert({
 		editor: editor,
 		enabled: true,
-		addons: {
-			images: {
-				preview: false,
-				captions: true,
-				fileUploadOptions: {
-					url: "/api/v1/media?api_token={{auth()->user()->api_token}}",
-					paramName: "image",
-					dataType: "json"
-				},
-				uploadCompleted: function ($el, data) {console.log(data)}
-			}
+        addons: {
+            images: {
+                preview: false,
+                captions: true,
+                fileUploadOptions: {
+                    url: "/api/v1/media?api_token={{auth()->user()->api_token}}",
+                    paramName: "image",
+                    dataType: "json"
+                },
+                uploadCompleted: function ($el, data) {console.log(data)}
+            }
         }
 	});
 });

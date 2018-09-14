@@ -7,13 +7,11 @@ use App\Http\Requests\Admin\PostsRequest;
 use App\Models\MediaLibrary;
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use Image;
-use Storage;
 
 class PostController extends Controller
 {
@@ -60,22 +58,8 @@ class PostController extends Controller
     {
 
         $post = Post::create($request->except(['view_count', 'featured_image', 'featured_image_preview']));
-        if ($request->hasFile('featured_image'))
-        {
-            $post->image = Post::createImage($request->file('featured_image'), [1920, 560], 0);
-        }
-
-        if ($request->hasFile('featured_image_preview'))
-        {
-            $post->image_preview = Post::createImage($request->file('featured_image_preview'), [600, 600], 1);
-        }
-
-        if ($request->input('tags'))
-        {
-            Tag::createTag($request->input('tags'), $post);
-        }
-        
-        $post->save();
+        $post->createImage($request);
+        $post->createTag($request);
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.created'));
     }
 
@@ -84,40 +68,23 @@ class PostController extends Controller
      */
     public function update(PostsRequest $request, Post $post): RedirectResponse
     {
-        $oldPostauthor = $post->author_id;
         $post->update($request->except(['view_count', 'featured_image', 'featured_image_preview']));
+
         $post->tag()->detach();
 
-        if ($request->hasFile('featured_image'))
-        {
-            $oldFilename = $post->image;
-            Storage::delete($oldFilename);
-            $post->image = Post::createImage($request->file('featured_image'), [1920, 560], 0);
-        }
+        $post->createImage($request);
+        $post->createTag($request);
 
-        if ($request->hasFile('featured_image_preview'))
-        {
-            $oldFilename_preview = $post->image_preview;
-            Storage::delete($oldFilename_preview);
-            $post->image_preview = Post::createImage($request->file('featured_image_preview'), [600, 600], 1);
-        }
-
-    
-        $post->save();
-        if ($request->input('tags'))
-        {
-            Tag::createTag($request->input('tags'), $post);
-        }
-        
         return redirect()->route('admin.posts.edit', $post)->withSuccess(__('posts.updated'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post  $post)
+    public function destroy(Post $post)
     {
-        Storage::delete($post->image);
+        $post->deleteImage();
+        $post->deleteImagePreview();
         $post->delete();
 
         return redirect()->route('admin.posts.index')->withSuccess(__('posts.deleted'));

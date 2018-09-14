@@ -158,7 +158,38 @@
 					dataType: "json"
 				},
 				uploadCompleted: function ($el, data) {console.log(data)}
-			}
+			},
+            embeds: { // (object) Embeds addon configuration
+                label: '<span class="fa fa-youtube-play"></span>', // (string) A label for an embeds addon
+                placeholder: 'Paste a YouTube, Vimeo, Facebook, Twitter or Instagram link and press Enter', // (string) Placeholder displayed when entering URL to embed
+                captions: true, // (boolean) Enable captions
+                captionPlaceholder: 'Type caption (optional)', // (string) Caption placeholder
+                oembedProxy: 'https://iframe.ly/api/oembed?iframe=1&api_key=ab9c42b1d3341f1bef6825', // (string/null) URL to oEmbed proxy endpoint, such as Iframely, Embedly or your own. You are welcome to use "http://medium.iframe.ly/api/oembed?iframe=1" for your dev and testing needs, courtesy of Iframely. *Null* will make the plugin use pre-defined set of embed rules without making server calls.
+                styles: { // (object) Available embeds styles configuration
+                    wide: { // (object) Embed style configuration. Key is used as a class name added to an embed, when the style is selected (.medium-insert-embeds-wide)
+                        label: '<span class="fa fa-align-justify"></span>', // (string) A label for a style
+                        added: function ($el) {}, // (function) Callback function called after the style was selected. A parameter $el is a current active paragraph (.medium-insert-active)
+                        removed: function ($el) {} // (function) Callback function called after a different style was selected and this one was removed. A parameter $el is a current active paragraph (.medium-insert-active)
+                    },
+                    left: {
+                        label: '<span class="fa fa-align-left"></span>'
+                    },
+                    right: {
+                        label: '<span class="fa fa-align-right"></span>'
+                    }
+                },
+                actions: { // (object) Actions for an optional second toolbar
+                    remove: { // (object) Remove action configuration
+                        label: '<span class="fa fa-times"></span>', // (string) Label for an action
+                        clicked: function ($el) { // (function) Callback function called when an action is selected
+                            var $event = $.Event('keydown');
+
+                            $event.which = 8;
+                            $(document).trigger($event);
+                        }
+                    }
+                }
+            }
         }
 	});
 
@@ -166,13 +197,13 @@
 		var fd = new FormData;
 		fd.append('_method', 'DELETE');
 		$.ajax({
-			url: "/api/v1/posts/<?=$post->slug?>/image?api_token={{auth()->user()->api_token}}",
+			url: "/api/v1/posts/<?=$post->id?>/image?api_token={{auth()->user()->api_token}}",
 			data: fd,
 			method: 'POST',
 			processData: false,
 			contentType: false
 		}).done(function(res) {
-			if (res == '1')
+			if (res)
 			{
 				location.reload();
 			}
@@ -183,13 +214,13 @@
 		var fd = new FormData;
 		fd.append('_method', 'DELETE');
 		$.ajax({
-			url: "/api/v1/posts/<?=$post->slug?>/image_preview?api_token={{auth()->user()->api_token}}",
+			url: "/api/v1/posts/<?=$post->id?>/image_preview?api_token={{auth()->user()->api_token}}",
 			data: fd,
 			method: 'POST',
 			processData: false,
 			contentType: false
 		}).done(function(res) {
-			if (res == '1')
+			if (res)
 			{
 				location.reload();
 			}

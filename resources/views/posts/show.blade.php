@@ -88,10 +88,16 @@ blockquote {
     font-family: Vollkorn,serif;
     font-size: 24px;
 }
+    .article__underground:before {
+        clear: both;
+        content: ' ';
+        display: table;
+    }
 </style>
 
 <section class="article">
-    <div class="article__background d-flex align-content-between flex-wrap parallax-window" @if($post->image) style="background-image:url('{{ asset('storage/images/post/' . $post->image) }}')" @endif>
+    @if($post->image)
+    <div class="article__background d-flex align-content-between flex-wrap parallax-window"  style="background-image:url('{{ asset('storage/images/post/' . $post->image) }}')" >
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="col-md-12">
@@ -121,9 +127,9 @@ blockquote {
                         <h1 class="article__title">{{ $post->title }}</h1>
                         <div class="article__description">
                             <div class="article__author d-flex align-items-center">
-                                <div class="article__img" style="background-image:;">
+                                <div class="article__img" style="background-image:url({{ asset('storage/images/avatar/' . $post->author->image) }});">
                                 </div>
-                                <span class="article__name"{{ $post->author->name }}</span>
+                                <span class="article__name"> {{ $post->author->fullname }}</span>
                             </div>
                             <span class="article__date">{{ humanize_date($post->posted_at) }}</span>
                             <span class="article__time">{{$post->view_count}} просмотров</span>
@@ -133,6 +139,53 @@ blockquote {
             </div>
         </div>
     </div>
+    @else
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="bread-crumbs">
+                        <ul class="bread-crumbs__list">
+                            <li>
+                                <a style="color:#000" class="bread__link bread__home" href="{{route('home')}}">
+                                    Mebel.org
+                                </a>
+                            </li>
+                            <li>
+                                <a style="color:#000" class="bread__link" href="/">Блог</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <ul class="article__category d-flex" style="padding-top:70px;">
+                        @if (isset($post->category->name)) <li class="active"><a style="color:#000" href="{{route('categories.show', $post->category)}}"> {{$post->category->name}} </a></li>@endif
+                        @foreach($categories as $category)
+                            <li><a style="color:#000" href="{{route('categories.show', $category)}}"> {{$category->name}}</a></li>
+                        @endforeach
+                    </ul>
+
+                    <h1 class="article__title">{{ $post->title }}</h1>
+                    <div class="article__description">
+                        <div class="article__author d-flex align-items-center">
+                            <div class="article__img" style="background-image:url({{ asset('storage/images/avatar/' . $post->author->image) }});">
+                            </div>
+                            <span class="article__name"> {{ $post->author->fullname }}</span>
+                        </div>
+                        <span class="article__date">{{ humanize_date($post->posted_at) }}</span>
+                        <span class="article__time">{{ $post->view_count }} просмотров</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <style>
+            .article__date::before, .article__time::before{
+                background: #000;
+            }
+        </style>
+    @endif
     <div class="article__content">
         <div class="container">
             <div class="row  d-flex justify-content-between">
@@ -206,7 +259,6 @@ blockquote {
             </div>
         </div>
     </div>
-
 
 </section>
 

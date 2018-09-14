@@ -15,7 +15,7 @@ class TagController extends Controller
     public function show(Request $request, Tag $tag)//: View
     {
         $categories = Category::get();
-        $posts = $tag->posts()->get();
+        $posts = $tag->posts()->paginate(30);
 
         return view('tags.show', [
             'tag' => $tag,
