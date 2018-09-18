@@ -85,7 +85,8 @@ class PostController extends Controller
 
     public function updateRating(Request $request, Post $post)
     {
-        return $post->upRating($request);    
+        $post->upRating($request);
+        return new PostResource($post);    
     }
 
     public function destroyImage(Post $post): String

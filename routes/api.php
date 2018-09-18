@@ -21,7 +21,6 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
         Route::apiResource('posts', 'PostController')->only(['update', 'store', 'destroy']);
         Route::post('/posts/{post}/likes', 'PostLikeController@store')->name('posts.likes.store');
         Route::delete('/posts/{post}/likes', 'PostLikeController@destroy')->name('posts.likes.destroy');
-        //Route::post('/posts/{post}/favorites' , 'PostFavoriteController@update')->name('posts.favorite.update');
         Route::post('favorite/{post}', 'PostController@favoritePost');
         Route::post('unfavorite/{post}', 'PostController@unFavoritePost');
         Route::delete('/posts/{post}/image', 'PostController@destroyImage');
@@ -34,6 +33,19 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
         //category
         Route::delete('/categories/{category}/image', 'CategoryController@destroyImage');
+        
+        //admin
+        Route::prefix('admin')->namespace('Admin')->group(function() {
+            Route::apiResource('categories', 'CategoryController');
+        });
+        
+            // Route::apiResource('posts', 'PostController');
+            // Route::apiResource('categories', 'CategoriesController');
+            // Route::apiResource('users', 'UserController')->only(['index', 'edit', 'update']);
+            // Route::apiResource('comments', 'CommentController')->only(['index', 'edit', 'update', 'destroy']);
+            // Route::apiResource('media', 'MediaLibraryController')->only(['index', 'show', 'create', 'store', 'destroy']);
+            // Route::apiResource('tags', 'TagController');
+
         
     });
 
@@ -50,4 +62,8 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
 
     // Users
     Route::apiResource('users', 'UserController')->only(['index', 'show']);
+
+
+    //test
+    Route::apiResource('categories', 'CategoryController')->only('index', 'show');
 });

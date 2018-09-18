@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Carbon;
-use \Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
 
 class AppServiceProvider extends ServiceProvider
 {

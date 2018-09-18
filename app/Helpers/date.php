@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Carbon;
-use \Laravelrus\LocalizedCarbon\Traits\LocalizedEloquentTrait;
 /**
  * Return a Carbon instance.
  */

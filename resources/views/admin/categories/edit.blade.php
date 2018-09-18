@@ -25,11 +25,11 @@
         $.ajax({
             url: "/api/v1/categories/<?=$category->id?>/image?api_token={{auth()->user()->api_token}}",
             data: fd,
-            method: 'POST',
+            method: 'DELETE',
             processData: false,
             contentType: false
         }).done(function(res) {
-            if (res == '1')
+            if (res)
             {
                 location.reload();
             }
