@@ -201,7 +201,7 @@ class Post extends Model
             }
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = storage_path('/images/post/' . $filename);
+            $location = public_path('/images/post/' . $filename);
             Image::make($image)->fit(1920, 500)->save($location);
             $this->image = $filename;
             $this->update(['image']);
@@ -215,7 +215,7 @@ class Post extends Model
             }
             $imagePre = $request->file('featured_image_preview');
             $filenamePre = time() . '_preview' . '.' . $imagePre->getClientOriginalExtension();
-            $locationPre = storage_path('/images/post/' . $filenamePre);
+            $locationPre = public_path('/images/post/' . $filenamePre);
             Image::make($imagePre)->fit(600, 600)->save($locationPre);
             $this->image_preview = $filenamePre;
             $this->update(['image_preview']);

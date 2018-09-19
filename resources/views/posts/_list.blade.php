@@ -16,7 +16,7 @@
                     @if($key==0||$key==2) <div class="col-3"> @endif
                     @if($key==1||$key==3) <div class="col-6"> @endif
                         <div class="news @if($key==0||$key==2) news__small @else news__long @endif" onclick="window.location='{{ route('posts.show', $post)}}'">
-                            @if ($post->image){{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
+                            @if ($post->image){{ Html::image(asset('/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
                             @if (isset($post->category->id))<a class="news__label" href="/posts/{{ $post->category->slug }}">{{ $post->category->name }}</a>@endif
                             <div class="news__wrap_big">
                                 <p class="news__title_big">{{ $post->title }}</p>
@@ -48,7 +48,7 @@
                 @if($key==3) </div><div class="row"> @endif
 				<div class="col-3">
 					<div class="news news__small" onclick="window.location='{{ route('posts.show', $post)}}'">
-						@if ($post->image){{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
+						@if ($post->image){{ Html::image(asset('/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
 						@if (isset($post->category->id))<a class="news__label" href="/posts/{{ $post->category->slug }}">{{ $post->category->name }}</a>@endif
 						<div class="news__wrap_big">
 							<p class="news__title_big">{{ $post->title }}</p>
@@ -81,7 +81,7 @@
                     @if(count($category['posts'])<=2)
                         <div class="col-5">
                                 <div class="news news__big" onclick="window.location='{{ route('posts.show', $post)}}'">
-                                    @if ($post->image){{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
+                                    @if ($post->image){{ Html::image(asset('/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
                                     @if (isset($post->category->id))<a class="news__label" href="/posts/{{ $post->category->slug }}">{{ $post->category->name }}</a>@endif
                                     <div class="news__wrap_big">
                                         <p class="news__title_big">{{ $post->title }}</p>
@@ -104,7 +104,7 @@
                         @if($key==0) <div class="col-5"> @endif
                             @if($key==1) <div class="col-4"> @endif
                                 <div class="news @if($key==0) news__big @else news__average @endif" onclick="window.location='{{ route('posts.show', $post)}}'">
-                                    @if ($post->image){{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
+                                    @if ($post->image){{ Html::image(asset('/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
                                     @if (isset($post->category->id))<a class="news__label" href="/posts/{{ $post->category->slug }}">{{ $post->category->name }}</a>@endif
                                     <div class="news__wrap_big">
                                         <p class="news__title_big">{{ $post->title }}</p>
@@ -128,7 +128,7 @@
                         @if($key==0||$key==2) <div class="col-3"> @endif
                         @if($key==1||$key==3) <div class="col-6"> @endif
                             <div class="news @if($key==0||$key==2) news__small @else news__long @endif" onclick="window.location='{{ route('posts.show', $post)}}'">
-                                @if ($post->image){{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
+                                @if ($post->image){{ Html::image(asset('/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
                                 @if (isset($post->category->id))<a class="news__label" href="/posts/{{ $post->category->slug }}">{{ $post->category->name }}</a>@endif
                                 <div class="news__wrap_big">
                                     <p class="news__title_big">{{ $post->title }}</p>
@@ -153,7 +153,7 @@
                             @if($key==1) <div class="col-4"> @endif
                             @if($key>=3) <div class="col-3"> @endif
                                 <div class="news @if($key==0) news__big @elseif($key==1||$key==2) news__average @else news__small @endif" onclick="window.location='{{ route('posts.show', $post)}}'">
-                                    @if ($post->image){{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
+                                    @if ($post->image){{ Html::image(asset('/images/post/' . $post->image), $post->image, ['class' => '']) }}@endif
                                     @if (isset($post->category->id))<a class="news__label" href="/posts/{{ $post->category->slug }}">{{ $post->category->name }}</a>@endif
                                     <div class="news__wrap_big">
                                         <p class="news__title_big">{{ $post->title }}</p>

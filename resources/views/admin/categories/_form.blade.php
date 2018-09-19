@@ -1,6 +1,6 @@
 @if(isset($category->image))
 <div class="form-group">
-    {{ Html::image(asset('/storage/images/category/' . $category->image), $category->image, [ 'width' => '350']) }}
+    {{ Html::image(asset('/images/category/' . $category->image), $category->image, [ 'width' => '350']) }}
 
     <button type="button" class="destroy_image btn btn-link text-danger " ><i class="fa fa-trash" aria-hidden="true" ></i>Удалить картинку</button>
 </div>

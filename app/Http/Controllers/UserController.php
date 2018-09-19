@@ -56,17 +56,7 @@ class UserController extends Controller
 
         $user->update($request->validated());
 
-        if ($request->hasFile('featured_image'))
-        {
-            $image = $request->file('featured_image');
-            $filename = $user->name . '.' . $image->getClientOriginalExtension();
-            $location = storage_path('/images/avatar/' . $filename);
-            Image::make($image)->resize(100, 100)->save($location);
-            $oldFilename = $user->image;
-            $user->image = $filename;
-            Storage::disk('local_user')->delete($oldFilename);
-        }
-        $user->save();
+        $user->createImage($request);
         return redirect()->route('users.edit')->withSuccess(__('users.updated'));
     }
 

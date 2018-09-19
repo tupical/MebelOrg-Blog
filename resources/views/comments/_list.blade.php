@@ -10,7 +10,7 @@
                 <div class="comment mt-3 mb-4">
                     <div class="comment__top d-flex justify-content-between align-items-center mb-1">
                         <div class="comment__top_info d-flex align-items-center">
-                            <img class="comment__top_info-img" src="{{ asset('storage/images/avatar/' . $comment->author->image) }}" alt="" data-pagespeed-url-hash="348088815" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                            <img class="comment__top_info-img" src="{{ asset('/images/avatar/' . $comment->author->image) }}" alt="" data-pagespeed-url-hash="348088815" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
                             <p class="comment__top_info-name ml-3">{{ $comment->author->name }}</p>
                         </div>
                         <p class="comment__top_date">{{ humanize_date($comment->posted_at) }}</p>

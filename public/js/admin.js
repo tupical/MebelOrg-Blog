@@ -1923,6 +1923,7 @@ Object.defineProperty(jQuery.trumbowyg, 'defaultOptions', {
 })(navigator, window, document, jQuery);
 
 
+
 /***/ })
 
 /******/ });

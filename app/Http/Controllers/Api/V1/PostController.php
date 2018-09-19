@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Facades\Auth;
 use App\Events\PostHasRating;
+use Collective\Html\Eloquent\FormAccessible;
+use Image;
+
 
 class PostController extends Controller
 {
@@ -104,4 +107,15 @@ class PostController extends Controller
 
        return $post->update(['image_preview']);
     }
+
+    // public function createImage(Post $post, Request $request)
+    // {
+    //     $image = $request->file('image');
+    //     $filename = time() . '.' . $image->getClientOriginalExtension();
+    //     $location = public_path('/images/media/' . $filename);
+    //     Image::make($image)->fit(1920, 1080)->save($location);
+    //     $post->update(['content']);
+    //     $post->save();
+    //     return asset('/public/images/media/' . $filename);
+    // }
 }

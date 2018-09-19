@@ -30,7 +30,7 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
         Route::delete('users/{user}/image', 'UserController@destroyImage');
         // Media
         Route::apiResource('media', 'MediaController')->only(['index', 'store', 'destroy']);
-
+        //Route::post('media/{post}', 'PostController@createImage');
         //category
         Route::delete('/categories/{category}/image', 'CategoryController@destroyImage');
         

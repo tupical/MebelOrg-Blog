@@ -97,7 +97,7 @@ blockquote {
 
 <section class="article">
     @if($post->image)
-    <div class="article__background d-flex align-content-between flex-wrap parallax-window"  style="background-image:url('{{ asset('storage/images/post/' . $post->image) }}')" >
+    <div class="article__background d-flex align-content-between flex-wrap parallax-window"  style="background-image:url('{{ asset('/images/post/' . $post->image) }}')" >
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="col-md-12">
@@ -127,7 +127,7 @@ blockquote {
                         <h1 class="article__title">{{ $post->title }}</h1>
                         <div class="article__description">
                             <div class="article__author d-flex align-items-center">
-                                <div class="article__img" style="background-image:url({{ asset('storage/images/avatar/' . $post->author->image) }});">
+                                <div class="article__img" style="background-image:url({{ asset('/images/avatar/' . $post->author->image) }});">
                                 </div>
                                 <span class="article__name"> {{ $post->author->fullname }}</span>
                             </div>
@@ -170,7 +170,7 @@ blockquote {
                     <h1 class="article__title">{{ $post->title }}</h1>
                     <div class="article__description">
                         <div class="article__author d-flex align-items-center">
-                            <div class="article__img" style="background-image:url({{ asset('storage/images/avatar/' . $post->author->image) }});">
+                            <div class="article__img" style="background-image:url({{ asset('/images/avatar/' . $post->author->image) }});">
                             </div>
                             <span class="article__name"> {{ $post->author->fullname }}</span>
                         </div>

@@ -70,7 +70,7 @@ class Category extends Model
             }
             $image = $request->file('featured_image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = storage_path('/images/category/' . $filename);
+            $location = public_path('/images/category/' . $filename);
             Image::make($image)->resize(1920, 500)->save($location);
 
             return $this->update(['image' => $filename]);

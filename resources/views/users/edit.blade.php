@@ -51,7 +51,7 @@
 
  @if(isset($user->image))
 <div class="form-group">
-    {{ Html::image(asset('/storage/images/avatar/' . $user->image), $user->image, [ 'width' => '100']) }}
+    {{ Html::image(asset('/images/avatar/' . $user->image), $user->image, [ 'width' => '100']) }}
 
     <button type="button" class="destroy_image">Delete</button> 	
 </div>

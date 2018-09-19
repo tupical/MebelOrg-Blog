@@ -13,7 +13,7 @@
 				<div class="same-articles-after__slide">
 					<a href="{{route('posts.show', $post)}}" class="same-articles-after__item">
 					@if ($post->image)
-						<div class="same-articles-after__img" style="background-image:url('{{ asset('/storage/images/post/' . $post->image) }} ');">
+						<div class="same-articles-after__img" style="background-image:url('{{ asset('/images/post/' . $post->image) }} ');">
 						</div>
 						@endif
 						<h2 class="same-articles-after__title-slide">{{$post->title}}</h2>

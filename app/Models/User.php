@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Relations\belongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Http\Request;
+use App\Http\Requests\UsersRequest;
+use Storage;
+use Image;
 
 class User extends Authenticatable
 {
@@ -18,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'provider', 'provider_id', 'registered_at', 'api_token'
+        'name', 'email', 'password', 'provider', 'provider_id', 'registered_at', 'api_token', 'image'
     ];
 
     /**
@@ -147,5 +151,27 @@ class User extends Authenticatable
     public function fav()
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    public function createImage(UsersRequest $request)
+    {
+        if ($request->hasFile('featured_image'))
+        {
+            if ($this->image)
+            {
+                Storage::disk('local_user')->delete($this->image);
+            }
+            $image = $request->file('featured_image');
+            $filename = $this->name . '.' . $image->getClientOriginalExtension();
+            $location = public_path('/images/avatar/' . $filename);
+            Image::make($image)->resize(100, 100)->save($location);
+
+            return $this->update(['image' => $filename]);
+        }
+    }
+
+    public function deleteImage()
+    {
+        return Storage::disk('local_user')->delete($this->image);
     }
 }

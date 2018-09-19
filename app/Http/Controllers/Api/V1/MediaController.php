@@ -26,7 +26,7 @@ class MediaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(MediaLibraryRequest $request): MediaResource
+    public function store(MediaLibraryRequest $request)
     {
         $this->authorize('store', Media::class);
 

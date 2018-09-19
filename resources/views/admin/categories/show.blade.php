@@ -2,7 +2,9 @@
 @section('content')
 @if(isset($category->image))
 <div class="form-group">
-    {{ Html::image(asset('/storage/images/category/' . $category->image), $category->image, [ 'width' => '350']) }}
+{{url('/')}}
+{{asset(public_path('/'))}}
+    {{ Html::image(asset('/images/category/' . $category->image), $category->image, [ 'width' => '350']) }}
 
 
 </div>

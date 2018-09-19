@@ -1,16 +1,1 @@
-<svg class="top_img" width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.5 8c.69 0 1.25-.56 1.25-1.25S13.19 5.5 12.5 5.5s-1.25.56-1.25 1.25S11.81 8 12.5 8zm0-2a.75.75 0 0 1 0 1.5.75.75 0 0 1 0-1.5zM10.5 10.75h-6a.25.25 0 1 0 0 .5h6a.25.25 0 1 0 0-.5zM10.5 12h-6a.25.25 0 1 0 0 .5h6a.25.25 0 1 0 0-.5z" fill="#000"/><path d="M12.75 4.25V0H2.25v4.25H0v8.5h1.5v.75h.75V15h10.5v-1.5h.75v-.75H15v-8.5h-2.25zM2.75.5h9.5v3.75h-9.5V.5zm-.5 4.25H14.5v4H.5v-4h1.75zM2 13v-1.75a.25.25 0 1 0-.5 0v1h-1v-3h1.75V13H2zm10.25 1.5h-9.5V9.25h9.5v5.25zm1.25-2.25v-1a.25.25 0 1 0-.5 0V13h-.25V9.25h1.75v3h-1z" fill="#000"/>
-<style>
-.top_img path{
-	fill: black;
-	transition:.3s ease;
-}
-.top_img:hover {
-	cursor:pointer;
-}
-.top_img:hover path{
-	fill: #ffba24;
-	transition:.3s ease;
-}
-</style>
-</svg>
+<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.5 8c.69 0 1.25-.56 1.25-1.25S13.19 5.5 12.5 5.5s-1.25.56-1.25 1.25S11.81 8 12.5 8zm0-2a.75.75 0 0 1 0 1.5.75.75 0 0 1 0-1.5zM10.5 10.75h-6a.25.25 0 1 0 0 .5h6a.25.25 0 1 0 0-.5zM10.5 12h-6a.25.25 0 1 0 0 .5h6a.25.25 0 1 0 0-.5z" fill="#000"/><path d="M12.75 4.25V0H2.25v4.25H0v8.5h1.5v.75h.75V15h10.5v-1.5h.75v-.75H15v-8.5h-2.25zM2.75.5h9.5v3.75h-9.5V.5zm-.5 4.25H14.5v4H.5v-4h1.75zM2 13v-1.75a.25.25 0 1 0-.5 0v1h-1v-3h1.75V13H2zm10.25 1.5h-9.5V9.25h9.5v5.25zm1.25-2.25v-1a.25.25 0 1 0-.5 0V13h-.25V9.25h1.75v3h-1z" fill="#000"/></svg>

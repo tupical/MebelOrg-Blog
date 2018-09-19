@@ -1,5 +1,5 @@
 <a href="{{ route('posts.show', $post)}}">
-    <div class="news news__small"  style="background-image: url(@if ($post->image_preview) {{asset('/storage/images/post/' . $post->image_preview)}} @else /storage/images/post/default.jpg @endif);">
+    <div class="news news__small"  style="background-image: url(@if ($post->image_preview) {{asset('/images/post/' . $post->image_preview)}} @else /images/post/default.jpg @endif);">
         <!---<img class="news__img" src="img/news-average-1.png" alt="Advise">-->
         <div class="news__label">@if (isset($post->category->id)){{ $post->category->name }}@endif</div>
         <div class="news__wrap_small">

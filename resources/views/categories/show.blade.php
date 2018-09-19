@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @if($category->image!='')
-        <section id="news-header" class="{{$category->slug}}" style="background: url({{asset('/storage/images/category/'.$category->image)}}) center top/cover no-repeat;">
+        <section id="news-header" class="{{$category->slug}}" style="background: url({{asset('/images/category/'.$category->image)}}) center top/cover no-repeat;">
             <div class="container">
                 <div class="row">
                     <div class="col-12">

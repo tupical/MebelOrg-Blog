@@ -12,5 +12,14 @@
 	fill: #ffba24;
 	transition:.3s ease;
 }
+.set__services_item .top_img {
+	fill: #00AEE9;
+}
+.set__services_item .top_img path {
+	fill: #00AEE9;
+}
+.set__services_item .top_img:hover path {
+	fill: #0077CC;
+}
 </style>
 </svg>

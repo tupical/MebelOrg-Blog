@@ -4,7 +4,7 @@
 
 @if(isset($post->image))
 <div class="form-group">
-    {{ Html::image(asset('/storage/images/post/' . $post->image), $post->image, [ 'width' => '350']) }}
+    {{ Html::image(asset('/images/post/' . $post->image), $post->image, [ 'width' => '350']) }}
 
     <button type="button" class="destroy_image btn btn-link text-danger " ><i class="fa fa-trash" aria-hidden="true" ></i>Удалить картинку</button>
 </div>
@@ -12,7 +12,7 @@
 
 @if(isset($post->image_preview))
 <div class="form-group">
-    {{ Html::image(asset('/storage/images/post/' . $post->image_preview), $post->image_preview, [ 'width' => '350']) }}
+    {{ Html::image(asset('/images/post/' . $post->image_preview), $post->image_preview, [ 'width' => '350']) }}
 
     <button type="button" class="destroy_image_preview btn btn-link text-danger " ><i class="fa fa-trash" aria-hidden="true" ></i>Удалить картинку</button>
 </div>
