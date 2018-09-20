@@ -33,7 +33,7 @@ class Post extends Model
         'keywords',
         'meta_title',
         'meta_description',
-        'rating',
+        'p_rating',
         'posted_at',
         'slug',
         'thumbnail_id',

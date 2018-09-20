@@ -254,12 +254,11 @@ blockquote {
                         </div>
                     </div>
                 </div>
-                <div class="d-none d-md-block col-md-2">
+                    <div class="d-none d-md-block col-md-2">
                 </div>
             </div>
         </div>
     </div>
-
 </section>
 
     <div id="app">

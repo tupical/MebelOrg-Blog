@@ -59,10 +59,12 @@ class PostController extends Controller
     {
         $categories = [];
 
+
+
         $post->comments_count = $post->comments()->count();
         $post->likes_count = $post->likes()->count();
-        $post->p_rating = $post->rating->avg('value');
-
+     
+            $post->p_rating = $post->rating->avg('value');
         event(new PostHasViewed($post));
  
         return view('posts.show', [

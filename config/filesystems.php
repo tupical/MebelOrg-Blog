@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'cloud' => env('FILESYSTEM_CLOUD', 's3'),
+    'cloud' => env('FILESYSTEM_CLOUD', 's3'), 
 
     /*
     |--------------------------------------------------------------------------
@@ -45,23 +45,28 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('/images/post/'),
+            'root' => public_path('/images/post/'),
         ],
 
         'local_user' => [
             'driver' => 'local',
-            'root' => storage_path('/images/avatar/'),
+            'root' => public_path('/images/avatar/'),
         ],
 
         'local_category' => [
             'driver' => 'local',
-            'root' => storage_path('/images/category/'),
+            'root' => public_path('/images/category/'),
+        ],
+
+        'local_media' => [
+            'driver' => 'local',
+            'root' => public_path('/media'),
         ],
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('/'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('/'),
+            'url' => env('APP_URL').'/media',
             'visibility' => 'public',
         ],
 
@@ -76,7 +81,7 @@ return [
 
         'media' => [
             'driver' => 'local',
-            'root'   => public_path().'/media',
+            'root'   => public_path('/media'),
         ],
 
     ],

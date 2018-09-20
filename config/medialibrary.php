@@ -7,6 +7,8 @@ return [
      * one or more of the filesystems you've configured in config/filesystems.php.
      */
     'default_filesystem' => 'media',
+        //'filesystem' => 'media',
+	'disk_name' => 'local_media',
 
     /*
      * The maximum file size of an item in bytes.
@@ -139,3 +141,4 @@ return [
      */
     'temporary_directory_path' => null,
 ];
+ 

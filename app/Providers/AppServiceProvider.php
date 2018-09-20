@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         setlocale(LC_ALL, 'ru_RU.utf8');
+        Schema::defaultStringLength(191);                                                                                                                                                                                                  
     }
 
     /**
