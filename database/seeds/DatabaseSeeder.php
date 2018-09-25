@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Role;
 use App\Models\Token;
 use App\Models\User;
+use App\Models\Rating;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -63,5 +64,15 @@ class DatabaseSeeder extends Seeder
         User::where('api_token', null)->get()->each->update([
             'api_token' => Token::generate()
         ]);
+        
+        for ($i =  1; $i <= 5; $i++)
+        {
+            Rating::create(
+                [
+                    'value' => $i,
+                ]
+            );
+        }
+  
     }
 }

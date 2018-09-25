@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostTagTable extends Migration
+class AddEmailColToComments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreatePostTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_tag', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('post_id');
-            $table->integer('tag_id');
-            $table->timestamps();
-        }); 
+        Schema::table('comments', function (Blueprint $table) {
+            $table->string('email')->nullable();
+        });
     }
 
     /**
@@ -28,6 +25,8 @@ class CreatePostTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_tag');
+        Schema::table('comments', function (Blueprint $table) {
+            $table->dropColumn();
+        });
     }
 }

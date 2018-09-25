@@ -37,8 +37,19 @@ class CategoryController extends Controller
         );
     }
 
+    public function categoriesName()
+    {
+        return CategoryResource::collection(
+            Category::select('name', 'slug')->get()
+        );
+    }
 
-
-
-
+    public function anotherCategories($category)
+    {
+        return CategoryResource::collection(
+            Category::select('name', 'slug')
+                    ->where('slug', '!=', $category)
+                    ->get()
+        );
+    }
 }

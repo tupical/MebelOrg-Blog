@@ -22,9 +22,9 @@
 			<div class="row">
 				<div class="col-12">
 					<ul class="article__category d-flex">
-						@foreach($categories as $category)
+							@foreach($categories as $category)
 							<li><a href="{{route('categories.show', $category['category'])}}"> {{$category['category']->name}}</a></li>
-						@endforeach
+							@endforeach
 					</ul>
 				</div>
 			</div>

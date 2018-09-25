@@ -31,7 +31,7 @@ class PostController extends Controller
                                         ->limit(8)
                                         ->get();
         }
-
+        
         return view('posts.index', [
             'posts' => Post::search($request->input('q'))
                              ->with('author', 'category')
@@ -64,13 +64,12 @@ class PostController extends Controller
         $post->comments_count = $post->comments()->count();
         $post->likes_count = $post->likes()->count();
      
-            $post->p_rating = $post->rating->avg('value');
         event(new PostHasViewed($post));
  
         return view('posts.show', [
             'post' => $post,
             'posts_random' => Post::where('id', '!=', $post->id)->orderByRaw("RAND()")->limit(6)->get(),
-            'categories' => Category::where('id', '!=', $post->category->id)->get(),
+            'categories' => Category::where('id', '!=', $post->category_id)->get(),
             'rating' => number_format($post->p_rating, 1),
             'comments' => CommentResource::collection(
                 Comment::latest()->where('post_id',$post->id)->limit(20)->get()

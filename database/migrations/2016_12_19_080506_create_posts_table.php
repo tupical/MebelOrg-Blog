@@ -23,9 +23,9 @@ class CreatePostsTable extends Migration
             $table->string('short_content')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
+            $table->float('p_rating')->default(0);
             $table->datetime('posted_at');
             $table->boolean('published')->default(0);
-            $table->float('p_rating')->default(0);
             $table->timestamps();
         });
     }

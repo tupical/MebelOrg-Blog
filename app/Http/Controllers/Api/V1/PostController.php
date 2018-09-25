@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PostsRequest;
 use App\Http\Resources\Post as PostResource;
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -54,8 +55,9 @@ class PostController extends Controller
     /**
      * Return the specified resource.
      */
-    public function show(Post $post): PostResource
+    public function show(Post $post, Request $request): PostResource
     {
+        dd($request);
         return new PostResource($post);
     }
 
@@ -86,17 +88,16 @@ class PostController extends Controller
         Auth::user()->favorites()->detach($post->id); return $post->id;
     }
 
-    public function updateRating(Request $request, Post $post)
+    public function updateRating(Request $request, Post $post): String
     {
         $post->upRating($request);
-        return new PostResource($post);    
+        return json_encode($post->p_rating);   
     }
 
     public function destroyImage(Post $post): String
     {
         $post->deleteImage();
         $post->image = null;
-        
         return $post->update(['image']);
     }
 
@@ -108,14 +109,38 @@ class PostController extends Controller
        return $post->update(['image_preview']);
     }
 
-    // public function createImage(Post $post, Request $request)
-    // {
-    //     $image = $request->file('image');
-    //     $filename = time() . '.' . $image->getClientOriginalExtension();
-    //     $location = public_path('/images/media/' . $filename);
-    //     Image::make($image)->fit(1920, 1080)->save($location);
-    //     $post->update(['content']);
-    //     $post->save();
-    //     return asset('/public/images/media/' . $filename);
-    // }
+    public function postsPopular()
+    {
+        return PostResource::collection(
+            Post::select('title', 'image_preview', 'posted_at', 'view_count', 'p_rating', 'slug', 'category_id')
+                ->orderBy('view_count', 'desc')
+                ->limit(6)
+                ->get()
+        );
+    }
+
+    public function postsNew()
+    {
+        return PostResource::collection(
+            Post::select('title', 'image_preview', 'posted_at', 'view_count', 'p_rating', 'slug', 'category_id')
+                ->orderBy('posted_at', 'desc')
+                ->limit(3)
+                ->get()
+        );
+    }
+
+    public function postWithCategory($category)
+    {
+        $id = Category::where('slug', $category)->pluck('id')->implode('id');
+        return PostResource::collection(
+            Post::select('title', 'image_preview', 'posted_at', 'view_count', 'p_rating', 'slug', 'category_id')
+                ->where('category_id', $id)->limit(8)->get()
+        );
+    }
+
+    public function showAuth(Post $post)
+    {
+
+        return new PostResource($post);
+    }
 }

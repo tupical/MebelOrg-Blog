@@ -59,11 +59,26 @@ Route::prefix('v1')->namespace('Api\V1')->group(function () {
     Route::apiResource('posts', 'PostController')->only(['index', 'show']);
     Route::apiResource('users.posts', 'UserPostController')->only('index');
     Route::post('/posts/{post}/rating', 'PostController@updateRating');
-
+    Route::get('posts_popular', 'PostController@postsPopular');
+    Route::get('posts_new', 'PostController@postsNew');
+    Route::get('posts_with_category/{category}', 'PostController@postWithCategory');
     // Users
     Route::apiResource('users', 'UserController')->only(['index', 'show']);
 
 
     //test
     Route::apiResource('categories', 'CategoryController')->only('index', 'show');
+
+    //tags
+    Route::apiResource('tags', 'TagController')->only('show');
+    
+    //Categories
+    Route::get('categories_list', 'CategoryController@categoriesName');
+    Route::get('categories_another/{category}', 'CategoryController@anotherCategories');
+
+    Route::get('posts_auth/{post}', 'PostController@showAuth');
+
+    Route::prefix('t1')->namespace('Tests')->group(function () {
+        Route::get('/', 'TestController@func');
+    });
 });

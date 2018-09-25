@@ -272,7 +272,8 @@ class Post extends Model
             $this->update(['p_rating']);
             array_push($_SESSION['hasrating'], $this->id);      
         }   
-        return session_write_close();    
+        session_write_close();
+        return $this->p_rating;    
     }
 }
  

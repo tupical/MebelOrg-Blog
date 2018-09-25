@@ -259,6 +259,8 @@ blockquote {
             </div>
         </div>
     </div>
+    
+  
 </section>
 
     <div id="app">

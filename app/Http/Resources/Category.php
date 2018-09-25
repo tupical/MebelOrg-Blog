@@ -15,9 +15,11 @@ class Category extends Resource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'description' => $this->content,
+            'description' => $this->description,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'image' => $this->image ? asset('/images/category/' . $this->image) : null,
+            'posts' => $this->posts->pluck('slug'),
         ];
     }
 }
